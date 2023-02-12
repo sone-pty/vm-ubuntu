@@ -1,0 +1,32 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/sone/sone/extern/http_parser/http_parser.c
+http_parser.h
+/home/sone/sone/extern/http_parser/http_parser.h
+assert.h
+-
+stddef.h
+-
+ctype.h
+-
+string.h
+-
+limits.h
+-
+
+/home/sone/sone/extern/http_parser/http_parser.h
+stddef.h
+-
+BaseTsd.h
+-
+sys/inttypes.h
+-
+stdint.h
+-
+
