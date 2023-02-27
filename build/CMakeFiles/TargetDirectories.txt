@@ -1,9 +1,0 @@
-/home/sone/sone/build/CMakeFiles/rebuild_cache.dir
-/home/sone/sone/build/CMakeFiles/edit_cache.dir
-/home/sone/sone/build/CMakeFiles/sone.dir
-/home/sone/sone/build/utils/CMakeFiles/rebuild_cache.dir
-/home/sone/sone/build/utils/CMakeFiles/edit_cache.dir
-/home/sone/sone/build/utils/CMakeFiles/utils.dir
-/home/sone/sone/build/ds/CMakeFiles/edit_cache.dir
-/home/sone/sone/build/ds/CMakeFiles/rebuild_cache.dir
-/home/sone/sone/build/ds/CMakeFiles/ds.dir
