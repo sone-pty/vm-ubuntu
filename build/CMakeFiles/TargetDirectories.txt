@@ -1,9 +1,0 @@
-/home/sone/vm-ubuntu/build/CMakeFiles/rebuild_cache.dir
-/home/sone/vm-ubuntu/build/CMakeFiles/edit_cache.dir
-/home/sone/vm-ubuntu/build/CMakeFiles/sone.dir
-/home/sone/vm-ubuntu/build/utils/CMakeFiles/rebuild_cache.dir
-/home/sone/vm-ubuntu/build/utils/CMakeFiles/edit_cache.dir
-/home/sone/vm-ubuntu/build/utils/CMakeFiles/utils.dir
-/home/sone/vm-ubuntu/build/ds/CMakeFiles/edit_cache.dir
-/home/sone/vm-ubuntu/build/ds/CMakeFiles/rebuild_cache.dir
-/home/sone/vm-ubuntu/build/ds/CMakeFiles/ds.dir
