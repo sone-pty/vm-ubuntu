@@ -2,6 +2,8 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <thread>
+
 #include <pthread.h>
 #include <unistd.h>
 #include <sys/types.h>
