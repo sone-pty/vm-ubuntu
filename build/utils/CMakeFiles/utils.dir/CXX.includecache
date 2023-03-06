@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/sone/vm-ubuntu/utils/random.cpp
+random.h
+/home/sone/vm-ubuntu/utils/random.h
+iostream
+-
+
+/home/sone/vm-ubuntu/utils/random.h
+

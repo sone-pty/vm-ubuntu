@@ -1,0 +1,1 @@
+/usr/bin/g++ -fPIC  -O0 -Wall -g -ggdb  -shared -Wl,-soname,libds.so -o ../../lib/libds.so CMakeFiles/ds.dir/ds.cpp.o 
