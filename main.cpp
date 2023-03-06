@@ -17,6 +17,7 @@
 #include <utils/random.h>
 #include <utils/redis.h>
 #include <ds/ds.h>
+#include <sonenet/sonenet.h>
 
 /* extern headers */
 #include <http_parser/http_parser.h>
@@ -98,7 +99,7 @@ int main(void)
 	*/
 
 	/////////////////////// Parallel_Sum /////////////////////////////
-	clock_t start = ::clock();
+/* 	clock_t start = ::clock();
 	std::vector<int> lst(10000, 1);
 	int res = Parallel_Sum(lst.begin(), lst.end());
 	clock_t end = ::clock();
@@ -110,7 +111,9 @@ int main(void)
 	auto a2 = std::async(std::launch::deferred, &Test::XX, &t);
 	auto a3 = std::async(std::launch::async, &Test::XXX, &t, num);
 	a2.wait();
-	std::cout << "XXX(), num = " << a3.get() << std::endl;
+	std::cout << "XXX(), num = " << a3.get() << std::endl; */
 
+	Sonenet::GetInstance()->Start(3);
+	Sonenet::GetInstance()->Exit();
     return 0;
 }
