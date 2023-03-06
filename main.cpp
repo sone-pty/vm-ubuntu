@@ -16,7 +16,6 @@
 /* private headers */
 #include <utils/random.h>
 #include <utils/redis.h>
-
 #include <ds/ds.h>
 
 /* extern headers */
@@ -100,7 +99,7 @@ int main(void)
 
 	/////////////////////// Parallel_Sum /////////////////////////////
 	clock_t start = ::clock();
-	std::vector<int> lst(100000000, 1);
+	std::vector<int> lst(10000, 1);
 	int res = Parallel_Sum(lst.begin(), lst.end());
 	clock_t end = ::clock();
 	std::cout << "sum: " << res << ", cost: " << (end - start) << "ticks" << std::endl;
