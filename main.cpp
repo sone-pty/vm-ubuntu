@@ -113,7 +113,8 @@ int main(void)
 	a2.wait();
 	std::cout << "XXX(), num = " << a3.get() << std::endl; */
 
-	//Sonenet::GetInstance()->Start(3);
-	//Sonenet::GetInstance()->Exit();
+	//Sonenet::GetInstance()->Start();
+	//Sonenet::GetInstance()->Wait();
+	
     return 0;
 }

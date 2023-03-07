@@ -13,9 +13,9 @@ public:
     static Sonenet* GetInstance();
 
     // 开启nums条工作线程
-    void Start(int nums);
+    void StartWorkers(int nums);
     // 关闭
-    void Exit();
+    void Wait();
     // 发送消息给指定服务
     void Send(unsigned int id, BaseMsg* msg);
 
