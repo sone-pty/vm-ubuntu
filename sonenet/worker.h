@@ -2,8 +2,11 @@
 
 #include <memory>
 
+
 namespace sonenet
 {
+
+class Service;
 
 class Worker
 {

@@ -28,6 +28,8 @@ public:
     std::string GetName() const { return _name; }
     void SetID(uint32_t id) { _id = id; }
     uint32_t GetID() const { return _id; }
+    void SetInGlobalQue(bool v) { _isInGlobalQue = v; }
+    bool GetInGlobalQue() const { return _isInGlobalQue; }
 
     bool IsExiting() const { return _isExiting; }
 
@@ -41,6 +43,9 @@ public:
     // 处理指定数量消息
     bool ProcessMessages(size_t nums);
 
+    // 检查自己的消息队列
+    bool CheckMessageQueue();
+
 private:
     // 弹出一条消息
     std::shared_ptr<BaseMsg> PopMsgQueue();
@@ -52,6 +57,8 @@ private:
     uint32_t _id;
     // 是否正在退出
     bool _isExiting;
+    // 是否在全局队列中
+    std::atomic_bool _isInGlobalQue;
 
     // 服务的消息队列
     std::queue<std::shared_ptr<BaseMsg>> _msgQueue;

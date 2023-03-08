@@ -20,7 +20,7 @@ public:
     static Sonenet* GetInstance();
 
     // 发送消息给指定服务
-    void Send(unsigned int id, BaseMsg* msg);
+    void Send(uint32_t id, std::shared_ptr<BaseMsg> msg);
 
     // 启动
     void Start();
@@ -33,10 +33,13 @@ public:
 
     // 全局队列增删服务
     std::shared_ptr<Service> PopGlobalQueue();
-    void PushGlobalQueue(std::shared_ptr<Service> srv);
+    bool PushGlobalQueue(std::shared_ptr<Service> srv);
 
     // 线程挂起
     void WorkerWait();
+
+    // 创建消息(测试用)
+    std::shared_ptr<BaseMsg> MakeMessage(uint32_t src, char* buf, size_t len);
 
 private:
     Sonenet(int threadNums);

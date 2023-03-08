@@ -3,6 +3,9 @@
 #include "worker.h"
 #include "service.h"
 
+#include <iostream>
+#include <string.h>
+
 using namespace sonenet;
 using namespace sonenet::define;
 
@@ -60,9 +63,24 @@ void Sonenet::Wait()
 /// @brief 发送消息给具体服务
 /// @param dest dest服务ID
 /// @param msg 消息
-void Sonenet::Send(uint32_t dest, BaseMsg* msg)
+void Sonenet::Send(uint32_t dest, std::shared_ptr<BaseMsg> msg)
 {
+    auto srv = GetService(dest);
+    if(srv == NULL || msg == NULL) return;
 
+    // 消息入队
+    srv->PushMsgQueue(msg);
+    // 进入全局队列
+    if(PushGlobalQueue(srv))
+    {
+        // 尝试唤醒线程(非线程安全)
+        if(_sleepCount == 0) return;
+        if(_workerThreadNums - _sleepCount < _globalQueue.size())
+        {
+            std::cout << "wake up thread" << std::endl;
+            pthread_cond_signal(&_sleepCountCond);
+        }
+    }
 }
 
 void Sonenet::Start()
@@ -131,6 +149,7 @@ std::shared_ptr<Service> Sonenet::PopGlobalQueue()
             srv = _globalQueue.front();
             _globalQueue.pop();
             --_globalQueueLen;
+            srv->SetInGlobalQue(false);
         }
     }
     pthread_spin_unlock(&_globalQueueLock);
@@ -138,14 +157,23 @@ std::shared_ptr<Service> Sonenet::PopGlobalQueue()
     return srv;
 }
 
-void Sonenet::PushGlobalQueue(std::shared_ptr<Service> srv)
+bool Sonenet::PushGlobalQueue(std::shared_ptr<Service> srv)
 {
+    bool ret = false;
+
     pthread_spin_lock(&_globalQueueLock);
     {
-        _globalQueue.push(srv);
-        ++_globalQueueLen;
+        if(srv->GetInGlobalQue() == false)
+        {
+            _globalQueue.push(srv);
+            srv->SetInGlobalQue(true);
+            ++_globalQueueLen;
+            ret = true;
+        }
     }
     pthread_spin_unlock(&_globalQueueLock);
+
+    return ret;
 }
 
 void Sonenet::WorkerWait()
@@ -155,4 +183,17 @@ void Sonenet::WorkerWait()
     pthread_cond_wait(&_sleepCountCond, &_sleepCountLock);
     --_sleepCount;
     pthread_mutex_unlock(&_sleepCountLock);
+}
+
+std::shared_ptr<BaseMsg> Sonenet::MakeMessage(uint32_t src, char *buf, size_t len)
+{
+    char* str = new char[len + 1];
+    memcpy(str, buf, len);
+    str[len] = 0;
+
+    auto msg = std::make_shared<ServiceMsg>();
+    msg->_len = len;
+    msg->_sourceId = src;
+    msg->_msg = std::shared_ptr<char>(str);
+    return msg;
 }

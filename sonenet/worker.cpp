@@ -39,5 +39,9 @@ void Worker::CheckAndPutToGlobalQueue(std::shared_ptr<Service> srv)
 {
     if(srv->IsExiting()) return;
 
-    
+    // 还有消息
+    if(srv->CheckMessageQueue())
+    {
+        Sonenet::GetInstance()->PushGlobalQueue(srv);
+    }
 }

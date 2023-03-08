@@ -1,5 +1,6 @@
 #include "service.h"
 #include "msg.h"
+#include "sonenet.h"
 
 #include <iostream>
 
@@ -9,7 +10,7 @@ using namespace sonenet::define;
 std::atomic_uint32_t Service::s_base_id(1);
 
 Service::Service()
-    : _isExiting(false)
+    : _isExiting(false), _isInGlobalQue(false)
 {
     pthread_spin_init(&_msgQueueLock, 0);
 }
@@ -21,7 +22,7 @@ Service::~Service()
 
 void Service::OnInit()
 {
-
+    
 }
 
 void Service::OnExit()
@@ -40,7 +41,8 @@ void Service::OnMessage(std::weak_ptr<BaseMsg> wMsg)
         {
             auto T = std::static_pointer_cast<ServiceMsg>(msg);
             // test
-            std::cout << "SRC_ID: " << T->_sourceId << ", msg: " << T->_msg << std::endl;
+            std::cout << "this is " << _id << ", from: " << T->_sourceId << ", msg: " << T->_msg << std::endl;
+            Sonenet::GetInstance()->Send(T->_sourceId, Sonenet::GetInstance()->MakeMessage(_id, "response", 8));
         }break;
         default: break;
     }
@@ -78,4 +80,22 @@ bool Service::ProcessMessages(size_t nums)
     }
 
     return true;
+}
+
+/// @brief 检查消息队列
+/// @return true/false: 空返回false, 不空返回true
+bool Service::CheckMessageQueue()
+{
+    pthread_spin_lock(&_msgQueueLock);
+    {
+        if(_msgQueue.empty())
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+    pthread_spin_unlock(&_msgQueueLock);
 }

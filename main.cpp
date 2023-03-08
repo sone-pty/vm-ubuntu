@@ -17,7 +17,10 @@
 #include <utils/random.h>
 #include <utils/redis.h>
 #include <ds/ds.h>
+
+/* sonenet */
 #include <sonenet/sonenet.h>
+#include <sonenet/service.h>
 
 /* extern headers */
 #include <http_parser/http_parser.h>
@@ -81,6 +84,18 @@ template <typename RandomIter> int Parallel_Sum(const RandomIter& beg, const Ran
 	return sum;
 }
 
+void test() {
+    uint32_t ping1 = sonenet::Sonenet::GetInstance()->NewService("ping");
+    uint32_t ping2 = sonenet::Sonenet::GetInstance()->NewService("ping");
+    uint32_t pong = sonenet::Sonenet::GetInstance()->NewService("ping");
+
+	auto msg1 = sonenet::Sonenet::GetInstance()->MakeMessage(ping1, "hi", 2);
+	auto msg2 = sonenet::Sonenet::GetInstance()->MakeMessage(ping2, "hello", 5);
+
+	sonenet::Sonenet::GetInstance()->Send(pong, msg1);
+	sonenet::Sonenet::GetInstance()->Send(pong, msg2);
+}
+
 int main(void)
 {
 /* 	clock_t start = ::clock();
@@ -97,8 +112,9 @@ int main(void)
 	a2.wait();
 	std::cout << "XXX(), num = " << a3.get() << std::endl; */
 
-	//Sonenet::GetInstance()->Start();
-	//Sonenet::GetInstance()->Wait();
-	
+	sonenet::Sonenet::GetInstance()->Start();
+	test();
+	sonenet::Sonenet::GetInstance()->Wait();
+
     return 0;
 }
