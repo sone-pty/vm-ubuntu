@@ -42,7 +42,9 @@ void Sonenet::StartWorkers(int nums)
 
     for(int i = 0;i < nums; ++i)
     {
-        _threads.emplace_back(new std::thread(Worker(2 << i)));
+        auto worker = std::make_shared<Worker>(2 << i);
+        _workers.push_back(worker);
+        _threads.push_back(std::make_shared<std::thread>(*worker));
     }
 }
 
@@ -75,7 +77,7 @@ void Sonenet::Send(uint32_t dest, std::shared_ptr<BaseMsg> msg)
     {
         // 尝试唤醒线程(非线程安全)
         if(_sleepCount == 0) return;
-        if(_workerThreadNums - _sleepCount < _globalQueue.size())
+        if(_workerThreadNums - _sleepCount <= _globalQueue.size())
         {
             std::cout << "wake up thread" << std::endl;
             pthread_cond_signal(&_sleepCountCond);
@@ -185,7 +187,7 @@ void Sonenet::WorkerWait()
     pthread_mutex_unlock(&_sleepCountLock);
 }
 
-std::shared_ptr<BaseMsg> Sonenet::MakeMessage(uint32_t src, char *buf, size_t len)
+std::shared_ptr<BaseMsg> Sonenet::MakeMessage(uint32_t src, const char *buf, size_t len)
 {
     char* str = new char[len + 1];
     memcpy(str, buf, len);

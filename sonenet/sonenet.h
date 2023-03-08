@@ -13,6 +13,7 @@ namespace sonenet
 
 class BaseMsg;
 class Service;
+class Worker;
 
 class Sonenet
 {
@@ -39,7 +40,7 @@ public:
     void WorkerWait();
 
     // 创建消息(测试用)
-    std::shared_ptr<BaseMsg> MakeMessage(uint32_t src, char* buf, size_t len);
+    std::shared_ptr<BaseMsg> MakeMessage(uint32_t src, const char* buf, size_t len);
 
 private:
     Sonenet(int threadNums);
@@ -60,6 +61,7 @@ private:
     // 工作线程
     int _workerThreadNums;
     std::vector<std::shared_ptr<std::thread>> _threads;
+    std::vector<std::shared_ptr<Worker>> _workers;
     // 全局队列
     pthread_spinlock_t _globalQueueLock;
     std::queue<std::shared_ptr<Service>> _globalQueue;

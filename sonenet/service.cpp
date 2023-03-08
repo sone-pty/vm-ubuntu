@@ -12,7 +12,7 @@ std::atomic_uint32_t Service::s_base_id(1);
 Service::Service()
     : _isExiting(false), _isInGlobalQue(false)
 {
-    pthread_spin_init(&_msgQueueLock, 0);
+    pthread_spin_init(&_msgQueueLock, PTHREAD_PROCESS_PRIVATE);
 }
 
 Service::~Service()

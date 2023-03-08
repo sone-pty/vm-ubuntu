@@ -113,6 +113,7 @@ int main(void)
 	std::cout << "XXX(), num = " << a3.get() << std::endl; */
 
 	sonenet::Sonenet::GetInstance()->Start();
+	sleep(3);
 	test();
 	sonenet::Sonenet::GetInstance()->Wait();
 
