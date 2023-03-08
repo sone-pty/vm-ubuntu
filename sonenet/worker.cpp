@@ -3,6 +3,7 @@
 #include "service.h"
 
 #include <iostream>
+#include <unistd.h>
 
 using namespace sonenet;
 
@@ -25,7 +26,8 @@ void Worker::operator()()
 
         if(srv == NULL)
         {
-            Sonenet::GetInstance()->WorkerWait();
+            //Sonenet::GetInstance()->WorkerWait();
+            sleep(1);
         }
         else
         {

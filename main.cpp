@@ -87,7 +87,7 @@ template <typename RandomIter> int Parallel_Sum(const RandomIter& beg, const Ran
 void test() {
     uint32_t ping1 = sonenet::Sonenet::GetInstance()->NewService("ping");
     uint32_t ping2 = sonenet::Sonenet::GetInstance()->NewService("ping");
-    uint32_t pong = sonenet::Sonenet::GetInstance()->NewService("ping");
+    uint32_t pong = sonenet::Sonenet::GetInstance()->NewService("pong");
 
 	auto msg1 = sonenet::Sonenet::GetInstance()->MakeMessage(ping1, "hi", 2);
 	auto msg2 = sonenet::Sonenet::GetInstance()->MakeMessage(ping2, "hello", 5);

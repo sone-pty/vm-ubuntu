@@ -24,7 +24,7 @@ public:
     static std::atomic_uint32_t s_base_id;
     
     // getter && setter
-    void SetName(const std::string& name) { _name = std::move(name); }
+    void SetName(const std::string& name) { _name = name; }
     std::string GetName() const { return _name; }
     void SetID(uint32_t id) { _id = id; }
     uint32_t GetID() const { return _id; }
