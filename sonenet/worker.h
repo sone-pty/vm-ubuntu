@@ -1,5 +1,10 @@
 #pragma once
 
+#include <memory>
+
+namespace sonenet
+{
+
 class Worker
 {
 public:
@@ -7,5 +12,10 @@ public:
     void operator()();
 
 private:
+    void CheckAndPutToGlobalQueue(std::shared_ptr<Service> srv);
+
+private:
     int _processNums;
 };
+
+}

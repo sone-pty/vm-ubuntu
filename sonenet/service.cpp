@@ -1,4 +1,7 @@
 #include "service.h"
+#include "msg.h"
+
+#include <iostream>
 
 using namespace sonenet;
 using namespace sonenet::define;
@@ -6,7 +9,7 @@ using namespace sonenet::define;
 std::atomic_uint32_t Service::s_base_id(1);
 
 Service::Service()
-    : isExiting(false)
+    : _isExiting(false)
 {
     pthread_spin_init(&_msgQueueLock, 0);
 }
@@ -23,12 +26,24 @@ void Service::OnInit()
 
 void Service::OnExit()
 {
-    isExiting = true;
+    _isExiting = true;
 }
 
-void Service::OnMessage()
+void Service::OnMessage(std::weak_ptr<BaseMsg> wMsg)
 {
+    const std::shared_ptr<BaseMsg>& msg = wMsg.lock();
+    if(msg == NULL) return;
 
+    switch(msg->GetType())
+    {
+        case MSG_TYPE::SERVICE_MSG:
+        {
+            auto T = std::static_pointer_cast<ServiceMsg>(msg);
+            // test
+            std::cout << "SRC_ID: " << T->_sourceId << ", msg: " << T->_msg << std::endl;
+        }break;
+        default: break;
+    }
 }
 
 std::shared_ptr<BaseMsg> Service::PopMsgQueue()
@@ -59,7 +74,7 @@ bool Service::ProcessMessages(size_t nums)
     for(size_t i = 0;i < nums; ++i)
     {
         const auto& msg = PopMsgQueue();
-        
+        OnMessage(msg);
     }
 
     return true;

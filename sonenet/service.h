@@ -29,10 +29,12 @@ public:
     void SetID(uint32_t id) { _id = id; }
     uint32_t GetID() const { return _id; }
 
+    bool IsExiting() const { return _isExiting; }
+
     // 逻辑回调
     void OnInit();
     void OnExit();
-    void OnMessage();
+    void OnMessage(std::weak_ptr<BaseMsg> wMsg);
 
     // 消息入队
     void PushMsgQueue(std::shared_ptr<BaseMsg> msg);
@@ -49,7 +51,7 @@ private:
     // 服务ID
     uint32_t _id;
     // 是否正在退出
-    bool isExiting;
+    bool _isExiting;
 
     // 服务的消息队列
     std::queue<std::shared_ptr<BaseMsg>> _msgQueue;

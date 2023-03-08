@@ -10,7 +10,7 @@
 
 namespace sonenet
 {
-    
+
 class BaseMsg;
 class Service;
 
@@ -34,6 +34,9 @@ public:
     // 全局队列增删服务
     std::shared_ptr<Service> PopGlobalQueue();
     void PushGlobalQueue(std::shared_ptr<Service> srv);
+
+    // 线程挂起
+    void WorkerWait();
 
 private:
     Sonenet(int threadNums);
@@ -61,6 +64,10 @@ private:
     // 服务ID->对象的映射
     std::unordered_map<uint32_t, std::shared_ptr<Service>> _services;
     pthread_rwlock_t _servicesLock;
+    // 动态调节线程运行
+    pthread_mutex_t _sleepCountLock;
+    pthread_cond_t _sleepCountCond;
+    int _sleepCount;
 };
 
 }

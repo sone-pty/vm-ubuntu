@@ -53,12 +53,14 @@ void Sonenet::Wait()
 
     pthread_spin_destroy(&_globalQueueLock);
     pthread_rwlock_destroy(&_servicesLock);
+    pthread_mutex_destroy(&_sleepCountLock);
+    pthread_cond_destroy(&_sleepCountCond);
 }
 
 /// @brief 发送消息给具体服务
-/// @param id dest服务ID
+/// @param dest dest服务ID
 /// @param msg 消息
-void Sonenet::Send(unsigned int id, BaseMsg* msg)
+void Sonenet::Send(uint32_t dest, BaseMsg* msg)
 {
 
 }
@@ -67,6 +69,8 @@ void Sonenet::Start()
 {
     pthread_spin_init(&_globalQueueLock, 0);
     pthread_rwlock_init(&_servicesLock, NULL);
+    pthread_mutex_init(&_sleepCountLock, NULL);
+    pthread_cond_init(&_sleepCountCond, NULL);
 
     StartWorkers(_workerThreadNums);
 }
@@ -119,7 +123,7 @@ std::shared_ptr<Service> Sonenet::GetService(uint32_t id)
 
 std::shared_ptr<Service> Sonenet::PopGlobalQueue()
 {
-    std::shared_ptr<Service> srv;
+    std::shared_ptr<Service> srv = NULL;
     pthread_spin_lock(&_globalQueueLock);
     {
         if(!_globalQueue.empty())
@@ -142,4 +146,13 @@ void Sonenet::PushGlobalQueue(std::shared_ptr<Service> srv)
         ++_globalQueueLen;
     }
     pthread_spin_unlock(&_globalQueueLock);
+}
+
+void Sonenet::WorkerWait()
+{
+    pthread_mutex_lock(&_sleepCountLock);
+    ++_sleepCount;
+    pthread_cond_wait(&_sleepCountCond, &_sleepCountLock);
+    --_sleepCount;
+    pthread_mutex_unlock(&_sleepCountLock);
 }
