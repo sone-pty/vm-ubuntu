@@ -1,7 +1,10 @@
 #include "sonenet.h"
-#include "base_msg.h"
+#include "msg.h"
 #include "worker.h"
 #include "service.h"
+
+using namespace sonenet;
+using namespace sonenet::define;
 
 Sonenet* Sonenet::s_inst = NULL;
 
@@ -18,7 +21,7 @@ Sonenet* Sonenet::GetInstance()
 }
 
 Sonenet::Sonenet(int threadNums)
-    : _workerThreadNums(threadNums)
+    : _workerThreadNums(threadNums), _globalQueueLen(0)
 {
 
 }
@@ -40,13 +43,16 @@ void Sonenet::StartWorkers(int nums)
     }
 }
 
-/// @brief 关闭服务管理
+/// @brief 关闭服务中心
 void Sonenet::Wait()
 {
-    for(int i = 0; i < _threads.size(); ++i)
+    for(size_t i = 0; i < _threads.size(); ++i)
     {
         _threads[i]->join();
     }
+
+    pthread_spin_destroy(&_globalQueueLock);
+    pthread_rwlock_destroy(&_servicesLock);
 }
 
 /// @brief 发送消息给具体服务
@@ -60,13 +66,14 @@ void Sonenet::Send(unsigned int id, BaseMsg* msg)
 void Sonenet::Start()
 {
     pthread_spin_init(&_globalQueueLock, 0);
+    pthread_rwlock_init(&_servicesLock, NULL);
 
     StartWorkers(_workerThreadNums);
 }
 
 uint32_t Sonenet::NewService(const std::string& name)
 {
-    auto srv = std::make_shared<Service>(new Service());
+    auto srv = std::make_shared<Service>();
 
     srv->SetName(name);
     srv->SetID(Service::s_base_id++);
@@ -108,4 +115,31 @@ std::shared_ptr<Service> Sonenet::GetService(uint32_t id)
     pthread_rwlock_unlock(&_servicesLock);
 
     return srv;
+}
+
+std::shared_ptr<Service> Sonenet::PopGlobalQueue()
+{
+    std::shared_ptr<Service> srv;
+    pthread_spin_lock(&_globalQueueLock);
+    {
+        if(!_globalQueue.empty())
+        {
+            srv = _globalQueue.front();
+            _globalQueue.pop();
+            --_globalQueueLen;
+        }
+    }
+    pthread_spin_unlock(&_globalQueueLock);
+
+    return srv;
+}
+
+void Sonenet::PushGlobalQueue(std::shared_ptr<Service> srv)
+{
+    pthread_spin_lock(&_globalQueueLock);
+    {
+        _globalQueue.push(srv);
+        ++_globalQueueLen;
+    }
+    pthread_spin_unlock(&_globalQueueLock);
 }

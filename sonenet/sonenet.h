@@ -8,6 +8,9 @@
 #include <string>
 #include <unordered_map>
 
+namespace sonenet
+{
+    
 class BaseMsg;
 class Service;
 
@@ -28,6 +31,10 @@ public:
     uint32_t NewService(const std::string& name);
     void KillService(uint32_t id); // 仅限服务自身调用
 
+    // 全局队列增删服务
+    std::shared_ptr<Service> PopGlobalQueue();
+    void PushGlobalQueue(std::shared_ptr<Service> srv);
+
 private:
     Sonenet(int threadNums);
     ~Sonenet();
@@ -36,7 +43,7 @@ private:
     Sonenet(Sonenet&&) = delete;
     void operator=(Sonenet&&) = delete;
 
-    // 开启nums条工作线程
+    // 开启指定数量工作线程
     void StartWorkers(int nums);
     // 查找服务
     std::shared_ptr<Service> GetService(uint32_t id);
@@ -50,7 +57,10 @@ private:
     // 全局队列
     pthread_spinlock_t _globalQueueLock;
     std::queue<std::shared_ptr<Service>> _globalQueue;
+    int _globalQueueLen;
     // 服务ID->对象的映射
     std::unordered_map<uint32_t, std::shared_ptr<Service>> _services;
     pthread_rwlock_t _servicesLock;
 };
+
+}

@@ -83,22 +83,6 @@ template <typename RandomIter> int Parallel_Sum(const RandomIter& beg, const Ran
 
 int main(void)
 {
-    //http_parser parser;
-    //http_parser_init(&parser, HTTP_REQUEST);
-
-	/*
-    Redis* r = new Redis();
-	if(!r->connect("127.0.0.1", 6379))
-	{
-		printf("connect error!\n");
-		return 0;
-	}
-	r->set("name", "Mayuyu");
-	printf("Get the name is %s\n", r->get("name").c_str());
-	delete r;
-	*/
-
-	/////////////////////// Parallel_Sum /////////////////////////////
 /* 	clock_t start = ::clock();
 	std::vector<int> lst(10000, 1);
 	int res = Parallel_Sum(lst.begin(), lst.end());
