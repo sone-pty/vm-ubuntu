@@ -26,8 +26,8 @@ void Worker::operator()()
 
         if(srv == NULL)
         {
-            //Sonenet::GetInstance()->WorkerWait();
-            sleep(1);
+            Sonenet::GetInstance()->WorkerWait();
+            //sleep(1);
         }
         else
         {
