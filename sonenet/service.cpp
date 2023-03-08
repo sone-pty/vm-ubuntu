@@ -66,9 +66,12 @@ void Service::PushMsgQueue(std::shared_ptr<BaseMsg> msg)
 {
     pthread_spin_lock(&_msgQueueLock);
     {
+        auto T = std::static_pointer_cast<ServiceMsg>(msg);
         _msgQueue.push(msg);
+        std::cout << T->_sourceId << ", " << T->_msg << ", " << _msgQueue.size() << std::endl;
     }
     pthread_spin_unlock(&_msgQueueLock);
+    std::cout << "after push" << std::endl;
 }
 
 bool Service::ProcessMessages(size_t nums)
