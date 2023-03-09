@@ -34,7 +34,7 @@ public:
 
     // 全局队列增删服务
     std::shared_ptr<Service> PopGlobalQueue();
-    bool PushGlobalQueue(std::shared_ptr<Service> srv);
+    void PushGlobalQueue(std::shared_ptr<Service> srv);
 
     // 线程挂起
     void WorkerWait();

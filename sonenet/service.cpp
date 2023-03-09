@@ -54,8 +54,11 @@ std::shared_ptr<BaseMsg> Service::PopMsgQueue()
 
     pthread_spin_lock(&_msgQueueLock);
     {
-        msg = _msgQueue.front();
-        _msgQueue.pop();
+        if(!_msgQueue.empty())
+        {
+            msg = _msgQueue.front();
+            _msgQueue.pop();
+        }
     }
     pthread_spin_unlock(&_msgQueueLock);
 
@@ -86,16 +89,16 @@ bool Service::ProcessMessages(size_t nums)
 /// @return true/false: 空返回false, 不空返回true
 bool Service::CheckMessageQueue()
 {
+    bool ret = false;
+
     pthread_spin_lock(&_msgQueueLock);
     {
-        if(_msgQueue.empty())
+        if(!_msgQueue.empty())
         {
-            return false;
-        }
-        else
-        {
-            return true;
+            ret = true;
         }
     }
     pthread_spin_unlock(&_msgQueueLock);
+
+    return ret;
 }

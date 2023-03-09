@@ -73,15 +73,15 @@ void Sonenet::Send(uint32_t dest, std::shared_ptr<BaseMsg> msg)
     // 消息入队
     srv->PushMsgQueue(msg);
     // 进入全局队列
-    if(PushGlobalQueue(srv))
+    PushGlobalQueue(srv);
+
+    // 尝试唤醒线程(非线程安全)
+    if (_sleepCount == 0)
+        return;
+    if (_workerThreadNums - _sleepCount <= _globalQueue.size())
     {
-        // 尝试唤醒线程(非线程安全)
-        if(_sleepCount == 0) return;
-        if(_workerThreadNums - _sleepCount <= _globalQueue.size())
-        {
-            std::cout << "wake up thread" << std::endl;
-            pthread_cond_signal(&_sleepCountCond);
-        }
+        std::cout << "wake up thread" << std::endl;
+        pthread_cond_signal(&_sleepCountCond);
     }
 }
 
@@ -151,7 +151,7 @@ std::shared_ptr<Service> Sonenet::PopGlobalQueue()
             srv = _globalQueue.front();
             _globalQueue.pop();
             --_globalQueueLen;
-            srv->SetInGlobalQue(false);
+            srv->_isInGlobalQue = false;
         }
     }
     pthread_spin_unlock(&_globalQueueLock);
@@ -159,23 +159,18 @@ std::shared_ptr<Service> Sonenet::PopGlobalQueue()
     return srv;
 }
 
-bool Sonenet::PushGlobalQueue(std::shared_ptr<Service> srv)
+void Sonenet::PushGlobalQueue(std::shared_ptr<Service> srv)
 {
-    bool ret = false;
-
     pthread_spin_lock(&_globalQueueLock);
     {
-        if(srv->GetInGlobalQue() == false)
+        if(!srv->_isInGlobalQue)
         {
             _globalQueue.push(srv);
-            srv->SetInGlobalQue(true);
+            srv->_isInGlobalQue = true;
             ++_globalQueueLen;
-            ret = true;
         }
     }
     pthread_spin_unlock(&_globalQueueLock);
-
-    return ret;
 }
 
 void Sonenet::WorkerWait()
