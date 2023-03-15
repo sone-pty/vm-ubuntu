@@ -3,7 +3,7 @@
 #include <memory>
 #include "define.h"
 
-namespace sonenet
+namespace sone
 {
     using namespace define;
 

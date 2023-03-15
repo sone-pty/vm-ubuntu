@@ -14,8 +14,8 @@
 #include <sys/stat.h>
 
 /* private headers */
-#include <utils/random.h>
 #include <utils/redis.h>
+#include <utils/threadLocal.h>
 #include <ds/ds.h>
 
 /* sonenet */
@@ -27,6 +27,7 @@
 #include <json11/json11.hpp>
 
 using namespace json11;
+using namespace sone::utils;
 
 class Test
 {
@@ -85,15 +86,15 @@ template <typename RandomIter> int Parallel_Sum(const RandomIter& beg, const Ran
 }
 
 void test() {
-    uint32_t ping1 = sonenet::Sonenet::GetInstance()->NewService("ping");
-    uint32_t ping2 = sonenet::Sonenet::GetInstance()->NewService("ping");
-    uint32_t pong = sonenet::Sonenet::GetInstance()->NewService("pong");
+    uint32_t ping1 = sone::Sonenet::GetInstance()->NewService("ping");
+    uint32_t ping2 = sone::Sonenet::GetInstance()->NewService("ping");
+    uint32_t pong = sone::Sonenet::GetInstance()->NewService("pong");
 
-	auto msg1 = sonenet::Sonenet::GetInstance()->MakeMessage(ping1, "hi", 2);
-	auto msg2 = sonenet::Sonenet::GetInstance()->MakeMessage(ping2, "hello", 5);
+	auto msg1 = sone::Sonenet::GetInstance()->MakeMessage(ping1, "hi", 2);
+	auto msg2 = sone::Sonenet::GetInstance()->MakeMessage(ping2, "hello", 5);
 
-	sonenet::Sonenet::GetInstance()->Send(pong, msg1);
-	sonenet::Sonenet::GetInstance()->Send(pong, msg2);
+	sone::Sonenet::GetInstance()->Send(pong, msg1);
+	sone::Sonenet::GetInstance()->Send(pong, msg2);
 }
 
 int main(void)
@@ -112,10 +113,16 @@ int main(void)
 	a2.wait();
 	std::cout << "XXX(), num = " << a3.get() << std::endl; */
 
-	sonenet::Sonenet::GetInstance()->Start();
+/* 	sone::Sonenet::GetInstance()->Start();
 	sleep(3);
 	test();
-	sonenet::Sonenet::GetInstance()->Wait();
+	sone::Sonenet::GetInstance()->Wait(); */
 
+	ThreadLocal<int> tl1;
+	std::thread t1([&tl1]()->void{ while(1) { *(tl1.Value()) = 2; std::cout << "t1: " << *(tl1.Value()) << std::endl; sleep(1); } });
+	std::thread t2([&tl1]()->void{ while(1) { *(tl1.Value()) = 3; std::cout << "t2: " << *(tl1.Value()) << std::endl; sleep(1); } });
+
+	t1.join();
+	t2.join();
     return 0;
 }

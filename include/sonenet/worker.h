@@ -3,7 +3,7 @@
 #include <memory>
 
 
-namespace sonenet
+namespace sone
 {
 
 class Service;
