@@ -4,8 +4,8 @@
 
 #include <iostream>
 
-using namespace sonenet;
-using namespace sonenet::define;
+using namespace sone;
+using namespace sone::define;
 
 std::atomic_uint32_t Service::s_base_id(1);
 

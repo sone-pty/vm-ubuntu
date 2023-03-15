@@ -5,7 +5,7 @@
 #include <iostream>
 #include <unistd.h>
 
-using namespace sonenet;
+using namespace sone;
 
 /// @brief 工作线程构造
 /// @param processNums 每次处理的消息数目

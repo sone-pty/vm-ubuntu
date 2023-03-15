@@ -1,6 +1,6 @@
 #pragma once
 
-namespace sonenet
+namespace sone
 {
     namespace define
     {

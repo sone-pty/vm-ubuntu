@@ -8,7 +8,7 @@
 #include <string>
 #include <unordered_map>
 
-namespace sonenet
+namespace sone
 {
 
 class BaseMsg;

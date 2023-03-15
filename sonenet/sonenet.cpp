@@ -6,8 +6,8 @@
 #include <iostream>
 #include <string.h>
 
-using namespace sonenet;
-using namespace sonenet::define;
+using namespace sone;
+using namespace sone::define;
 
 Sonenet* Sonenet::s_inst = NULL;
 
