@@ -1,0 +1,11 @@
+{
+	"server": "120.241.126.82",
+	"local_address": "127.0.0.1",
+	"local_port": 1080,
+	"timeout": 300,
+	"workers": 1,
+	"server_port": 61438,
+	"password": "Mt8VU2K0VDVc6wAJ",
+	"method": "chacha20-ietf-poly1305",
+	"plugin": "plain"
+}

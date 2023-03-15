@@ -1,0 +1,4 @@
+#!/bin/bash
+
+sudo sslocal -c ~/shadowsocks.json -d stop
+sudo service privoxy stop

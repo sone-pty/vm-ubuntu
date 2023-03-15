@@ -1,0 +1,6 @@
+#!/bin/bash
+
+sudo sslocal -c ~/shadowsocks.json -d stop
+sudo sslocal -c ~/shadowsocks.json -d start
+sudo service privoxy stop
+sudo service privoxy restart
