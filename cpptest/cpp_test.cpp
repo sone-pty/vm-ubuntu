@@ -17,7 +17,11 @@ template <typename T, typename... Args> void print(T&& a, Args&&... arg)
 class Test
 {
 public:
-    Test() = default;
+    Test() { cout << "default construct" << endl; }
+    Test(const Test& t) { cout << "Test copy construct" << endl; }
+    Test(Test&& t) { cout << "Test move construct" << endl; }
+    void operator=(const Test& t) { cout << "Test assign(const Test&)" << endl; }
+    void operator=(Test&& t) { cout << "Test assign(Test&&)" << endl; }
 
     static void func(vector<int>&& a) { cout << "vector<int>&&" << endl; }
     template <typename T> static void func(T&& a) { cout << "T&&" << endl; }
@@ -31,15 +35,14 @@ private:
 void process(const string& lvalArg) { print("left"); }
 void process(string&& rvalArg) { print("right"); }
 
-template<typename T>                        //用以转发param到process的模板
-void logAndProcess(T&& param)
+template<typename T> void logAndProcess(T&& param)
 {
     process(param);
 }
 
+void MainFunc(const Test& t) { }
+
 int main(void)
 {
-    string&& rs = "sdsd";
-    logAndProcess(std::move(rs));
     return 0;
 }
