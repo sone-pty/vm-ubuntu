@@ -76,11 +76,10 @@ void Sonenet::Send(uint32_t dest, std::shared_ptr<BaseMsg> msg)
     PushGlobalQueue(srv);
 
     // 尝试唤醒线程(非线程安全)
-    if (_sleepCount == 0)
-        return;
+    if (_sleepCount == 0) return;
     if (_workerThreadNums - _sleepCount <= _globalQueue.size())
     {
-        std::cout << "wake up thread" << std::endl;
+        /// TODO: log
         pthread_cond_signal(&_sleepCountCond);
     }
 }

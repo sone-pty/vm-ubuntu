@@ -14,6 +14,25 @@ template <typename T, typename... Args> void print(T&& a, Args&&... arg)
     print(forward<Args>(arg)...);
 }
 
+//--------------转发失败情况测试---------------------
+//空指针转发需要传入nullptr而不是NULL或者0
+void forward_fail_test_intptr(int*)
+{
+    cout << "forward int* succ" << endl;
+}
+
+void forward_fail_test_intptr(int)
+{
+    cout << "forward int* failed" << endl;
+}
+
+template <typename... Args> void forward_fail_test(Args&&... args)
+{
+    forward_fail_test_intptr(forward<Args>(args)...);
+}
+
+//--------------转发失败情况测试---------------------
+
 class Test
 {
 public:
@@ -41,6 +60,8 @@ template<typename T> void logAndProcess(T&& param)
 }
 
 void MainFunc(const Test& t) { }
+
+// 引用折叠作用于四种情况: 1. 模板实例化 2. auto类型推导 3. typedef和别名声明的产生和使用 4. decltype
 
 int main(void)
 {
