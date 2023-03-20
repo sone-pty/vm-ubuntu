@@ -16,6 +16,7 @@
 /* private headers */
 #include <utils/redis.h>
 #include <utils/threadLocal.h>
+#include <utils/threadPool.h>
 #include <ds/ds.h>
 
 /* sonenet */
@@ -118,11 +119,5 @@ int main(void)
 	test();
 	sone::Sonenet::GetInstance()->Wait(); */
 
-	ThreadLocal<int> tl1;
-	std::thread t1([&tl1]()->void{ while(1) { *(tl1.Value()) = 2; std::cout << "t1: " << *(tl1.Value()) << std::endl; sleep(1); } });
-	std::thread t2([&tl1]()->void{ while(1) { *(tl1.Value()) = 3; std::cout << "t2: " << *(tl1.Value()) << std::endl; sleep(1); } });
-
-	t1.join();
-	t2.join();
     return 0;
 }

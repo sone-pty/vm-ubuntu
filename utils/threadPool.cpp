@@ -49,17 +49,10 @@ void ThreadPool::stop()
     }
 }
 
+// 非线程安全
 bool ThreadPool::isFull()
 {
-    bool ret = false;
-    pthread_mutex_lock(&taskLock_);
-
-    {
-        ret = taskqueue_.size() == maxQueueSize_;
-    }
-
-    pthread_mutex_unlock(&taskLock_);
-    return ret;
+    return taskqueue_.size() >= maxQueueSize_;
 }
 
 void ThreadPool::pushTask(Task task)

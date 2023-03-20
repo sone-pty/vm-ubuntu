@@ -75,7 +75,7 @@ int Thread::join()
 
 void Thread::start()
 {
-    assert(started_ = false);
+    assert(started_ == false);
     started_ = true;
 
     detail::ThreadData* data = new detail::ThreadData(func_, startCb_, stopCb_, &tid_, &cl_);

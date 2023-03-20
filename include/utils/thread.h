@@ -21,8 +21,8 @@ public:
 
     pid_t tid() const { return tid_; }
     bool started() const { return started_; }
-    void setStartCb(const ThreadCallback& cb) { startCb_ = std::move(cb); }  
-    void setStopCb(const ThreadCallback& cb) { stopCb_ = std::move(cb); } 
+    void setStartCb(ThreadCallback cb) { startCb_ = std::move(cb); }  
+    void setStopCb(ThreadCallback cb) { stopCb_ = std::move(cb); } 
 
     int join();
     void start();
