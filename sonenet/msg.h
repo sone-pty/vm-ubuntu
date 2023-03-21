@@ -1,7 +1,7 @@
 #pragma once
 
 #include <memory>
-#include "define.h"
+#include "../base/define.h"
 
 namespace sone
 {

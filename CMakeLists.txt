@@ -1,7 +1,7 @@
 PROJECT(sone)
 
 SET(MY_TARGET sone)
-SET(MY_LINK utils ds sonenet)
+SET(MY_LINK base ds sonenet)
 
 CMAKE_MINIMUM_REQUIRED(VERSION 3.14)
 
@@ -24,7 +24,7 @@ AUX_SOURCE_DIRECTORY(./extern/http_parser EXTERN_HTTPPARSER_SRC)
 AUX_SOURCE_DIRECTORY(./extern/json11 EXTERN_JSON11_SRC)
 
 #添加子目录
-ADD_SUBDIRECTORY(utils)
+ADD_SUBDIRECTORY(base)
 ADD_SUBDIRECTORY(ds)
 add_subdirectory(sonenet)
 

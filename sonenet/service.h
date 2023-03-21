@@ -6,7 +6,7 @@
 #include <pthread.h>
 #include <memory>
 
-#include "define.h"
+#include "../base/define.h"
 
 namespace sone
 {

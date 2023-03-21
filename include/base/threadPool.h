@@ -22,7 +22,6 @@ public:
 
     // 任务队列上限
     void setMaxQueueSize(int nums) { maxQueueSize_ = nums; }
-    bool isFull();
     // assert: nums > 0
     void start(int nums);
     void stop();
@@ -32,6 +31,7 @@ public:
 private:
     Task take();
     void threadFunc();
+    bool isFull();
 
 private:
     // 线程队列相关

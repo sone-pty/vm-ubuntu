@@ -14,9 +14,8 @@
 #include <sys/stat.h>
 
 /* private headers */
-#include <utils/redis.h>
-#include <utils/threadLocal.h>
-#include <utils/threadPool.h>
+#include <base/threadLocal.h>
+#include <base/threadPool.h>
 #include <ds/ds.h>
 
 /* sonenet */
