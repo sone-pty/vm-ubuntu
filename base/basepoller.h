@@ -11,7 +11,6 @@ namespace sone
 {
     namespace utils
     {
-
         class Channel;
 
         ///
