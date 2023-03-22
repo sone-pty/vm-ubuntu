@@ -58,7 +58,10 @@
         "ratio": "cpp",
         "mutex": "cpp",
         "cinttypes": "cpp",
-        "types.h": "c"
+        "types.h": "c",
+        "cstring": "cpp",
+        "set": "cpp",
+        "unordered_set": "cpp"
     },
     "C_Cpp.errorSquiggles": "enabled",
     "clangd.arguments": [

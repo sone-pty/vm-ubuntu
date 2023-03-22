@@ -1,5 +1,6 @@
 #include "socketsOps.h"
 #include "endian.h"
+#include "define.h"
 
 #include <errno.h>
 #include <fcntl.h>
@@ -12,6 +13,7 @@
 #include <arpa/inet.h>
 
 using namespace sone::utils;
+using namespace sone::define;
 
 namespace
 {
@@ -36,12 +38,6 @@ namespace
         (void)ret;
     }
 #endif
-
-    template <typename To, typename From>
-    inline To implicit_cast(From const &f)
-    {
-        return f;
-    }
 
 } // namespace
 

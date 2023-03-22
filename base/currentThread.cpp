@@ -90,8 +90,8 @@ namespace sone
         void sleepUsec(int64_t usec)
         {
             struct timespec ts = {0, 0};
-            ts.tv_sec = static_cast<time_t>(usec / Timestamp::kMicroSecondsPerSecond);
-            ts.tv_nsec = static_cast<long>(usec % Timestamp::kMicroSecondsPerSecond * 1000);
+            ts.tv_sec = static_cast<time_t>(usec / utils::Timestamp::kMicroSecondsPerSecond);
+            ts.tv_nsec = static_cast<long>(usec % utils::Timestamp::kMicroSecondsPerSecond * 1000);
             ::nanosleep(&ts, NULL);
         }
 

@@ -1,5 +1,6 @@
 #include "epollPoller.h"
 #include "channel.h"
+#include "define.h"
 
 #include <assert.h>
 #include <errno.h>
@@ -9,6 +10,7 @@
 #include <string.h>
 
 using namespace sone::utils;
+using namespace sone::define;
 
 // On Linux, the constants of poll(2) and epoll(4)
 // are expected to be the same.
@@ -24,17 +26,6 @@ namespace
     const int kNew = -1;
     const int kAdded = 1;
     const int kDeleted = 2;
-
-    template <typename To, typename From>
-    inline To implicit_cast(From const &f)
-    {
-        return f;
-    }
-
-    inline void memZero(void *p, size_t n)
-    {
-        memset(p, 0, n);
-    }
 }
 
 EPollPoller::EPollPoller(EventLoop *loop)
