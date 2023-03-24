@@ -16,7 +16,7 @@
 /* private headers */
 #include <base/threadLocal.h>
 #include <base/threadPool.h>
-#include <ds/ds.h>
+#include <base/eventLoop.h>
 
 /* sonenet */
 #include <sonenet/sonenet.h>
@@ -118,5 +118,8 @@ int main(void)
 	test();
 	sone::Sonenet::GetInstance()->Wait(); */
 
+	EventLoop loop;
+	loop.runAfter(2.0, [&loop]()->void{ loop.quit(); });
+	loop.loop();
     return 0;
 }
