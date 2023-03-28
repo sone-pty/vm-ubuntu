@@ -3,6 +3,7 @@
 #include "basepoller.h"
 #include "socketsOps.h"
 #include "timerQueue.h"
+#include "logging.h"
 
 #include <assert.h>
 #include <sys/eventfd.h>
@@ -22,7 +23,7 @@ namespace
 		int evtfd = ::eventfd(0, EFD_NONBLOCK | EFD_CLOEXEC);
 		if (evtfd < 0)
 		{
-			//LOG_SYSERR << "Failed in eventfd";
+			LOG_SYSERR << "Failed in eventfd";
 			abort();
 		}
 		return evtfd;
@@ -35,7 +36,7 @@ namespace
 		IgnoreSigPipe()
 		{
 			::signal(SIGPIPE, SIG_IGN);
-			// LOG_TRACE << "Ignore SIGPIPE";
+			LOG_TRACE << "Ignore SIGPIPE";
 		}
 	};
 #pragma GCC diagnostic error "-Wold-style-cast"
@@ -61,11 +62,11 @@ EventLoop::EventLoop()
 {
 	pthread_mutex_init(&pcbLock_, NULL);
 
-	//LOG_DEBUG << "EventLoop created " << this << " in thread " << threadId_;
+	LOG_DEBUG << "EventLoop created " << this << " in thread " << threadId_;
 	if (t_loopInThisThread)
 	{
-/* 		LOG_FATAL << "Another EventLoop " << t_loopInThisThread
-				  << " exists in this thread " << threadId_; */
+ 		LOG_FATAL << "Another EventLoop " << t_loopInThisThread
+				  << " exists in this thread " << threadId_;
 	}
 	else
 	{
@@ -80,8 +81,8 @@ EventLoop::~EventLoop()
 {
 	pthread_mutex_destroy(&pcbLock_);
 
-/* 	LOG_DEBUG << "EventLoop " << this << " of thread " << threadId_
-			  << " destructs in thread " << CurrentThread::tid(); */
+ 	LOG_DEBUG << "EventLoop " << this << " of thread " << threadId_
+			  << " destructs in thread " << CurrentThread::tid();
 	wakeupChannel_->disableAll();
 	wakeupChannel_->remove();
 	::close(wakeupFd_);
@@ -92,16 +93,16 @@ void EventLoop::loop()
 {
 	assertInLoopThread();
 	quit_ = false;
-	//LOG_TRACE << "EventLoop " << this << " start looping";
+	LOG_TRACE << "EventLoop " << this << " start looping";
 
 	while (!quit_)
 	{
 		activeChannels_.clear();
 		pollReturnTime_ = poller_->poll(kPollTimeMs, &activeChannels_);
-/* 		if (Logger::logLevel() <= Logger::TRACE)
+ 		if (Logger::logLevel() <= Logger::TRACE)
 		{
 			printActiveChannels();
-		} */
+		}
 		// TODO sort channel by priority
 		eventHandling_ = true;
 		for (Channel *channel : activeChannels_)
@@ -114,7 +115,7 @@ void EventLoop::loop()
 		doPendingFunctors();
 	}
 
-	//LOG_TRACE << "EventLoop " << this << " stop looping";
+	LOG_TRACE << "EventLoop " << this << " stop looping";
 }
 
 void EventLoop::quit()
@@ -131,9 +132,9 @@ void EventLoop::quit()
 
 void EventLoop::abortNotInLoopThread()
 {
-	/*   LOG_FATAL << "EventLoop::abortNotInLoopThread - EventLoop " << this
+	  LOG_FATAL << "EventLoop::abortNotInLoopThread - EventLoop " << this
 				<< " was created in threadId_ = " << threadId_
-				<< ", current thread id = " <<  CurrentThread::tid(); */
+				<< ", current thread id = " <<  CurrentThread::tid();
 }
 
 //------------------timer-----------------------------
@@ -218,7 +219,7 @@ void EventLoop::handleWakeupRead()
 	ssize_t n = sockets::read(wakeupFd_, &one, sizeof one);
 	if (n != sizeof one)
 	{
-		// LOG_ERROR << "EventLoop::handleRead() reads " << n << " bytes instead of 8";
+		LOG_ERROR << "EventLoop::handleRead() reads " << n << " bytes instead of 8";
 	}
 }
 
@@ -228,7 +229,7 @@ void EventLoop::wakeup()
 	ssize_t n = sockets::write(wakeupFd_, &one, sizeof one);
 	if (n != sizeof one)
 	{
-		// LOG_ERROR << "EventLoop::wakeup() writes " << n << " bytes instead of 8";
+		LOG_ERROR << "EventLoop::wakeup() writes " << n << " bytes instead of 8";
 	}
 }
 
@@ -254,6 +255,6 @@ void EventLoop::printActiveChannels() const
 {
 	for (const Channel *channel : activeChannels_)
 	{
-		//LOG_TRACE << "{" << channel->reventsToString() << "} ";
+		LOG_TRACE << "{" << channel->reventsToString() << "} ";
 	}
 }

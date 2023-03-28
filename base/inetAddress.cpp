@@ -1,6 +1,7 @@
 #include "inetAddress.h"
 #include "endian.h"
 #include "socketsOps.h"
+#include "logging.h"
 
 #include <netdb.h>
 #include <netinet/in.h>
@@ -133,7 +134,7 @@ bool InetAddress::resolve(const std::string& hostname, InetAddress *out)
     {
         if (ret)
         {
-            //LOG_SYSERR << "InetAddress::resolve";
+            LOG_SYSERR << "InetAddress::resolve";
         }
         return false;
     }

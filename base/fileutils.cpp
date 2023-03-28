@@ -1,5 +1,6 @@
 #include "fileutils.h"
 #include "define.h"
+#include "logging.h"
 
 #include <assert.h>
 #include <errno.h>
@@ -37,7 +38,7 @@ void FileUtil::AppendFile::append(const char *logline, const size_t len)
             int err = ferror(fp_);
             if (err)
             {
-                // fprintf(stderr, "AppendFile::append() failed %s\n", strerror_tl(err));
+                fprintf(stderr, "AppendFile::append() failed %s\n", utils::strerror_tl(err));
                 break;
             }
         }

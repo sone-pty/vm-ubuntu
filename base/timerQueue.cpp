@@ -3,6 +3,7 @@
 #include "define.h"
 #include "timer.h"
 #include "timerId.h"
+#include "logging.h"
 
 #include <sys/timerfd.h>
 #include <unistd.h>
@@ -21,7 +22,7 @@ namespace sone
                                                TFD_NONBLOCK | TFD_CLOEXEC);
                 if (timerfd < 0)
                 {
-                    //LOG_SYSFATAL << "Failed in timerfd_create";
+                    LOG_SYSFATAL << "Failed in timerfd_create";
                 }
                 return timerfd;
             }
@@ -45,10 +46,10 @@ namespace sone
             {
                 uint64_t howmany;
                 ssize_t n = ::read(timerfd, &howmany, sizeof howmany);
-                //LOG_TRACE << "TimerQueue::handleRead() " << howmany << " at " << now.toString();
+                LOG_TRACE << "TimerQueue::handleRead() " << howmany << " at " << now.toString();
                 if (n != sizeof howmany)
                 {
-                    //LOG_ERROR << "TimerQueue::handleRead() reads " << n << " bytes instead of 8";
+                    LOG_ERROR << "TimerQueue::handleRead() reads " << n << " bytes instead of 8";
                 }
             }
 
@@ -63,7 +64,7 @@ namespace sone
                 int ret = ::timerfd_settime(timerfd, 0, &newValue, &oldValue);
                 if (ret)
                 {
-                    //LOG_SYSERR << "timerfd_settime()";
+                    LOG_SYSERR << "timerfd_settime()";
                 }
             }
         }

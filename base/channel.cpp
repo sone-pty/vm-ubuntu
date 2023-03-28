@@ -1,5 +1,6 @@
 #include "channel.h"
 #include "eventLoop.h"
+#include "logging.h"
 
 #include <sstream>
 #include <assert.h>
@@ -73,12 +74,12 @@ void Channel::handleEvent(Timestamp receiveTime)
 void Channel::handleEventWithGuard(Timestamp receiveTime)
 {
     eventHandling_ = true;
-    //LOG_TRACE << reventsToString();
+    LOG_TRACE << reventsToString();
     if ((revents_ & POLLHUP) && !(revents_ & POLLIN))
     {
         if (logHup_)
         {
-            //LOG_WARN << "fd = " << fd_ << " Channel::handle_event() POLLHUP";
+            LOG_WARN << "fd = " << fd_ << " Channel::handle_event() POLLHUP";
         }
         if (closeCallback_)
             closeCallback_();
@@ -86,7 +87,7 @@ void Channel::handleEventWithGuard(Timestamp receiveTime)
 
     if (revents_ & POLLNVAL)
     {
-        //LOG_WARN << "fd = " << fd_ << " Channel::handle_event() POLLNVAL";
+        LOG_WARN << "fd = " << fd_ << " Channel::handle_event() POLLNVAL";
     }
 
     if (revents_ & (POLLERR | POLLNVAL))

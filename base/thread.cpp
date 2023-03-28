@@ -1,4 +1,6 @@
 #include "thread.h"
+#include "logging.h"
+
 #include <assert.h>
 #include <sys/syscall.h>
 #include <unistd.h>
@@ -83,7 +85,9 @@ void Thread::start()
 
     if(ret != 0)
     {
-        // log
+        started_ = false;
+        delete data;
+        LOG_SYSFATAL << "Failed in pthread_create";
     }
     else
     {

@@ -1,6 +1,7 @@
 #include "socket.h"
 #include "inetAddress.h"
 #include "socketsOps.h"
+#include "logging.h"
 
 #include <netinet/in.h>
 #include <netinet/tcp.h>
@@ -104,12 +105,12 @@ void Socket::setReusePort(bool on)
                            &optval, static_cast<socklen_t>(sizeof optval));
     if (ret < 0 && on)
     {
-        //LOG_SYSERR << "SO_REUSEPORT failed.";
+        LOG_SYSERR << "SO_REUSEPORT failed.";
     }
 #else
     if (on)
     {
-        //LOG_ERROR << "SO_REUSEPORT is not supported.";
+        LOG_ERROR << "SO_REUSEPORT is not supported.";
     }
 #endif
 }
