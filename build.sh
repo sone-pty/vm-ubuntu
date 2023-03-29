@@ -28,13 +28,10 @@ fi
 
 #cp without path
 DEST_PATH="./include/"
-
-headers=`find . -name *.h`
-#echo $headers
+headers=`find . -name '*.h' ! -path './3rd/*' ! -path './extern/*'`
 
 for file in $headers
 do
-#echo $file
     temp=${file#*/}
     dstfile=$DEST_PATH$temp
     dstpath=${dstfile%/*}

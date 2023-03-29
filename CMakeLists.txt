@@ -1,7 +1,7 @@
 PROJECT(sone)
 
 SET(MY_TARGET sone)
-SET(MY_LINK base ds sonenet)
+SET(MY_LINK base sonenet)
 
 CMAKE_MINIMUM_REQUIRED(VERSION 3.14)
 
@@ -25,8 +25,7 @@ AUX_SOURCE_DIRECTORY(./extern/json11 EXTERN_JSON11_SRC)
 
 #添加子目录
 ADD_SUBDIRECTORY(base)
-ADD_SUBDIRECTORY(ds)
-add_subdirectory(sonenet)
+ADD_SUBDIRECTORY(sonenet)
 
 #头文件搜索目录
 INCLUDE_DIRECTORIES(include)
