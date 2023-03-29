@@ -79,7 +79,7 @@ void AsyncLogging::threadFunc()
 {
     assert(running_ == true);
     latch_.CountDown();
-    LogFile output(basename_, rollSize_, false);
+    LogFile output(basename_, rollSize_, TimeZone::China(), false);
     BufferPtr newBuffer1(new Buffer);
     BufferPtr newBuffer2(new Buffer);
     newBuffer1->bzero();

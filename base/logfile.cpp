@@ -11,11 +11,13 @@ using namespace sone;
 
 LogFile::LogFile(const std::string &basename,
                  off_t rollSize,
+                 const TimeZone& tz,
                  bool threadSafe,
                  int flushInterval,
                  int checkEveryN)
     : basename_(basename),
       rollSize_(rollSize),
+      timezone_(tz),
       threadSafe_(threadSafe),
       flushInterval_(flushInterval),
       checkEveryN_(checkEveryN),
@@ -121,10 +123,20 @@ std::string LogFile::getLogFileName(const std::string &basename, time_t *now)
     filename = basename;
 
     char timebuf[32];
-    struct tm tm;
+    //struct tm tm;
     *now = time(NULL);
-    gmtime_r(now, &tm);
-    strftime(timebuf, sizeof timebuf, ".%Y%m%d-%H%M%S.", &tm);
+
+    // 转换时区
+    struct DateTime dt;
+    if (timezone_.valid())
+    {
+        dt = timezone_.toLocalTime(*now);
+    }
+
+    snprintf(timebuf, sizeof(timebuf), ".%4d%02d%02d %02d:%02d:%02d.", dt.year, dt.month, dt.day, dt.hour, dt.minute, dt.second);
+
+    //gmtime_r(now, &tm);
+    //strftime(timebuf, sizeof timebuf, ".%Y%m%d-%H%M%S.", &tm);
     filename += timebuf;
 
     filename += ProcessInfo::hostname();

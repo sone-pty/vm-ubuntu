@@ -20,6 +20,7 @@
 #include <base/blockqueue.h>
 #include <base/asyncLogger.h>
 #include <base/logging.h>
+#include <base/timezone.h>
 
 /* sonenet */
 #include <sonenet/sonenet.h>
@@ -43,12 +44,15 @@ void asyncOutput(const char *msg, int len)
 int main(int argc, char *argv[])
 {
 	// 日志线程
+	Logger::setOutput(asyncOutput);
+	Logger::setTimeZone(TimeZone::China());
 	char name[256] = {'\0'};
 	strncpy(name, argv[0], sizeof name - 1);
 	AsyncLogging log(::basename(name), kRollSize);
-	log.start();
 	g_asyncLog = &log;
-	Logger::setOutput(asyncOutput);
+	log.start();
+	LOG_INFO << "LOGGER STARTED";
 	// 事件循环线程
+	sleep(1);
 	return 0;
 }

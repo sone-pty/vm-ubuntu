@@ -1,6 +1,7 @@
 #pragma once
 
 #include "noncopyable.h"
+#include "timezone.h"
 
 #include <pthread.h>
 #include <memory>
@@ -20,6 +21,7 @@ namespace sone
         public:
             LogFile(const std::string &basename,
                     off_t rollSize,
+                    const TimeZone& tz,
                     bool threadSafe = true,
                     int flushInterval = 3,
                     int checkEveryN = 1024);
@@ -32,7 +34,7 @@ namespace sone
         private:
             void append_unlocked(const char *logline, int len);
 
-            static std::string getLogFileName(const std::string &basename, time_t *now);
+            std::string getLogFileName(const std::string &basename, time_t *now);
 
             const std::string basename_;
             const off_t rollSize_;
@@ -47,6 +49,7 @@ namespace sone
             time_t lastRoll_;
             time_t lastFlush_;
             std::unique_ptr<FileUtil::AppendFile> file_;
+            TimeZone timezone_;
 
             const static int kRollPerSeconds_ = 60 * 60 * 24;
         };

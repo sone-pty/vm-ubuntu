@@ -431,6 +431,12 @@ TimeZone TimeZone::UTC()
 }
 
 // static
+TimeZone TimeZone::China()
+{
+    return TimeZone(CHINA_UTC_OFFSEAT, "China");
+}
+
+// static
 TimeZone TimeZone::loadZoneFile(const char *zonefile)
 {
     std::unique_ptr<Data> data(new Data);

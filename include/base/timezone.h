@@ -8,6 +8,8 @@ namespace sone
 {
     namespace utils
     {
+        const int CHINA_UTC_OFFSEAT = 8 * 60 * 60;
+        
         // Local time in unspecified timezone.
         // A minute is always 60 seconds, no leap seconds.
         struct DateTime
