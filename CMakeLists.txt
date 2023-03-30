@@ -7,7 +7,7 @@ CMAKE_MINIMUM_REQUIRED(VERSION 3.14)
 
 SET(CMAKE_CXX_COMPILER "/usr/bin/g++")
 
-SET(CMAKE_BUILD_TYPE "Debug")
+#SET(CMAKE_BUILD_TYPE "Debug")
 SET(CMAKE_CXX_FLAGS_DEBUG "$ENV{CXXFLAGS} -O0 -Wall -g -ggdb -Wno-sign-compare -Wno-reorder")
 SET(CMAKE_CXX_FLAGS_RELEASE "$ENV{CXXFLAGS} -O3 -Wall -Wno-sign-compare -Wno-reorder")
 
