@@ -5,8 +5,7 @@
 #include <queue>
 #include <pthread.h>
 #include <memory>
-
-#include "../base/define.h"
+#include <base/define.h>
 
 namespace sone
 {
