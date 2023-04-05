@@ -1,9 +1,7 @@
 #pragma once
 
 #include "tcpConnection.h"
-
 #include <map>
-#include <atomic>
 
 namespace sone
 {
@@ -106,7 +104,6 @@ namespace sone
             MessageCallback messageCallback_;
             WriteCompleteCallback writeCompleteCallback_;
             ThreadInitCallback threadInitCallback_;
-            std::atomic<int32_t> started_;
             // always in loop thread
             int nextConnId_;
             ConnectionMap connections_;

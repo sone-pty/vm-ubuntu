@@ -47,13 +47,10 @@ void TcpServer::setThreadNum(int numThreads)
 
 void TcpServer::start()
 {
-    if (started_.load() == 0)
-    {
-        threadPool_->start(threadInitCallback_);
+    threadPool_->start(threadInitCallback_);
 
-        assert(!acceptor_->listening());
-        loop_->runInLoop(std::bind(&Acceptor::listen, get_pointer(acceptor_)));
-    }
+    assert(!acceptor_->listening());
+    loop_->runInLoop(std::bind(&Acceptor::listen, get_pointer(acceptor_)));
 }
 
 void TcpServer::newConnection(int sockfd, const InetAddress &peerAddr)
