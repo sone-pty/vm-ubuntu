@@ -62,7 +62,8 @@
         "cstring": "cpp",
         "set": "cpp",
         "unordered_set": "cpp",
-        "bitset": "cpp"
+        "bitset": "cpp",
+        "any": "cpp"
     },
     "C_Cpp.errorSquiggles": "enabled",
     "clangd.arguments": [
