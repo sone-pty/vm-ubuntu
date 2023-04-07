@@ -27,8 +27,10 @@ AUX_SOURCE_DIRECTORY(./extern/json11 EXTERN_JSON11_SRC)
 ADD_SUBDIRECTORY(base)
 ADD_SUBDIRECTORY(sonenet)
 ADD_SUBDIRECTORY(Logservice)
+ADD_SUBDIRECTORY(test)
 
 add_dependencies(Logservice base)
+add_dependencies(Test base)
 
 #头文件搜索目录
 INCLUDE_DIRECTORIES(include)

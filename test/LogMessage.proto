@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package LogMessage;
+
+message LogRequest {
+
+    enum LOG_LEVEL {
+        TRACE = 0;
+        DEBUG = 1;
+        INFO  = 2;
+        WARN  = 3;
+        ERROR = 4;
+        FATAL = 5;
+    }
+
+    LOG_LEVEL level = 1;
+    string content = 2;
+}
+
+message LogResponse {
+
+    enum RESP_STATUS {
+        OK = 0;
+        ERROR = 1;
+    }
+
+    RESP_STATUS status = 1;
+    string reason = 2;
+}
