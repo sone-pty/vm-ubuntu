@@ -7,15 +7,11 @@
         {
             "name": "gdb-debug",
             "type": "cppdbg",
-            "request": "launch",
-            //"processId":"${command:pickProcess}",
-            "program": "${workspaceFolder}/bin/sone",
-            "args": [],
-            "stopAtEntry": true,
-            "cwd": "${workspaceFolder}",
-            "environment": [],
-            "externalConsole": false,
+            "request": "attach",
+            "processId":"${command:pickProcess}",
+            "program": "${workspaceFolder}/bin/Logservice",
             "MIMode": "gdb",
+            "miDebuggerPath": "${workspaceFolder}/sudo_gdb",
             "setupCommands": [
                 {
                     "description": "为 gdb 启用整齐打印",

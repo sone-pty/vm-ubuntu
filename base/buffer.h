@@ -54,6 +54,8 @@ namespace sone
                 return readerIndex_;
             }
 
+            char* writepeek() { return begin() + writerIndex_; }
+
             const char *peek() const
             {
                 return begin() + readerIndex_;

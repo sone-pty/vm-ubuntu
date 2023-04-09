@@ -26,36 +26,60 @@ void asyncOutput(const char *msg, int len)
 void OnMessage(const TcpConnectionPtr& conn, Buffer* buf, Timestamp time)
 {
     LogMessage::LogRequest req;
+    uint32_t messageLen;
+    std::string info;
+    Buffer resp;
+    bool ret = false;
 
-    while(buf->readableBytes() > 0 && req.ParseFromArray(buf->peek(), buf->readableBytes()))
+    while(buf->readableBytes() > 0)
     {
-        switch(req.level())
+        messageLen = buf->readInt32();
+
+        if(messageLen > 0)
         {
-            case LogMessage::LogRequest_LOG_LEVEL::LogRequest_LOG_LEVEL_TRACE:
-                LOG_TRACE << req.content(); break;
-            case LogMessage::LogRequest_LOG_LEVEL::LogRequest_LOG_LEVEL_DEBUG:
-                LOG_DEBUG << req.content(); break;
-            case LogMessage::LogRequest_LOG_LEVEL::LogRequest_LOG_LEVEL_INFO:
-                LOG_INFO << req.content(); break;
-            case LogMessage::LogRequest_LOG_LEVEL::LogRequest_LOG_LEVEL_WARN:
-                LOG_WARN << req.content(); break;
-            case LogMessage::LogRequest_LOG_LEVEL::LogRequest_LOG_LEVEL_ERROR:
-                LOG_ERROR << req.content(); break;
-            case LogMessage::LogRequest_LOG_LEVEL::LogRequest_LOG_LEVEL_FATAL:
-                LOG_FATAL << req.content(); break;
-            default:
-                LOG_INFO << req.content(); break;
+            ret = req.ParseFromArray(buf->peek(), messageLen);
         }
 
-        Buffer resp;
-        resp.append("r", 1);
-        conn->send(&resp);
-        req.Clear();
+        if(ret)
+        {
+            buf->retrieve(messageLen);
 
-        buf->retrieve(req.content().size());
+            switch (req.level())
+            {
+            case LogMessage::LogRequest_LOG_LEVEL::LogRequest_LOG_LEVEL_TRACE:
+                LOG_TRACE << req.content();
+                break;
+            case LogMessage::LogRequest_LOG_LEVEL::LogRequest_LOG_LEVEL_DEBUG:
+                LOG_DEBUG << req.content();
+                break;
+            case LogMessage::LogRequest_LOG_LEVEL::LogRequest_LOG_LEVEL_INFO:
+                LOG_INFO << req.content();
+                break;
+            case LogMessage::LogRequest_LOG_LEVEL::LogRequest_LOG_LEVEL_WARN:
+                LOG_WARN << req.content();
+                break;
+            case LogMessage::LogRequest_LOG_LEVEL::LogRequest_LOG_LEVEL_ERROR:
+                LOG_ERROR << req.content();
+                break;
+            case LogMessage::LogRequest_LOG_LEVEL::LogRequest_LOG_LEVEL_FATAL:
+                LOG_FATAL << req.content();
+                break;
+            default:
+                LOG_INFO << req.content();
+                break;
+            }
 
-        sleep(1);
+            info = "Log succ";
+        }
+        else
+        {
+            break;
+            info = "parse error";
+        }
     }
+
+    resp.append(info.c_str(), info.size());
+    conn->send(&resp);
 }
 
 int main(int argc, char *argv[]) 

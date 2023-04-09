@@ -1,5 +1,9 @@
-#include "../include/base/tcpclient.h"
-#include "../include/base/eventLoop.h"
+#include <base/tcpclient.h>
+#include <base/eventLoop.h>
+#include <base/buffer.h>
+#include <base/logging.h>
+
+#include <unistd.h>
 
 #include "LogMessage.pb.h"
 
@@ -10,10 +14,18 @@ void OnMessage(const TcpConnectionPtr& conn, Buffer* buf, Timestamp time)
 {
     LogMessage::LogRequest req;
     req.set_level(LogMessage::LogRequest_LOG_LEVEL_INFO);
-    req.set_content("hello" + time.toString());
-    std::string info;
-    req.SerializeToString(&info);
-    conn->send(info.c_str(), info.size());
+    req.set_content("send log req on " + time.toString());
+
+    Buffer info;
+    std::string msg;
+    req.SerializeToString(&msg);
+    info.append(msg.c_str(), msg.size());
+    // 添加消息长度前缀
+    uint32_t messageLen = static_cast<uint32_t>(info.readableBytes());
+    info.prependInt32(messageLen);
+
+    sleep(1);
+    conn->send(&info);
 }
 
 int main(void)
