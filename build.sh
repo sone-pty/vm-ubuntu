@@ -53,7 +53,9 @@ fi
 
 #cp without path
 DEST_PATH="./include/"
-headers=`find . -name '*.h' ! -path './3rd/*' ! -path './extern/*'`
+headers=`find . -name '*.h' \
+        ! -path './3rd/*' \
+        ! -path './extern/*'`
 
 for file in $headers
 do

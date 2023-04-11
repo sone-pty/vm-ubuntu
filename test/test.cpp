@@ -24,6 +24,8 @@ void OnMessage(const TcpConnectionPtr& conn, Buffer* buf, Timestamp time)
     uint32_t messageLen = static_cast<uint32_t>(info.readableBytes());
     info.prependInt32(messageLen);
 
+    sleep(1);
+
     conn->send(&info);
 }
 
