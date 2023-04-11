@@ -1,6 +1,9 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <sys/inotify.h>
+#include <iostream>
+#include <fcntl.h>
 
 #include <base/eventLoop.h>
 #include <base/tcpserver.h>
@@ -118,6 +121,31 @@ int main(int argc, char *argv[])
     InetAddress listenAddr("127.0.0.1", 7096);
     TcpServer server(&mainLoop, listenAddr, "Logserver");
     server.setMessageCallback(std::bind(OnMessage, _1, _2, _3));
+
+/*
+    // 检测日志文件
+    int checkFileFd = ::inotify_init();
+    int wd;
+    const char* elfDir = ::getenv("PWD");
+
+    if(checkFileFd < 0)
+    {
+        std::cerr << "::inotify_init() failed" << std::endl;
+        return -1;
+    }
+
+    // 设置非阻塞
+    int flags = ::fcntl(checkFileFd, F_GETFL, 0);
+    flags |= O_NONBLOCK;
+    ::fcntl(checkFileFd, F_SETFL, flags);
+
+    if((wd = ::inotify_add_watch(checkFileFd, elfDir, IN_DELETE)) < 0)
+    {
+        std::cerr << "::inotify_add_watch() failed" << std::endl;
+        return -1;
+    }
+*/
+
     server.start();
     mainLoop.loop();
 
