@@ -3,3 +3,5 @@ bin/
 build/
 include/
 lib/
+test/LogMessage.pb.*
+Logservice/LogMessage.pb.*
