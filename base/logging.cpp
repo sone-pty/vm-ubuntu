@@ -34,13 +34,13 @@ namespace sone
         Logger::LogLevel g_logLevel = initLogLevel();
 
         const char *LogLevelName[Logger::NUM_LOG_LEVELS] =
-            {
-                "TRACE ",
-                "DEBUG ",
-                "INFO  ",
-                "WARN  ",
-                "ERROR ",
-                "FATAL ",
+        {
+            "TRACE ",
+            "DEBUG ",
+            "INFO  ",
+            "WARN  ",
+            "ERROR ",
+            "FATAL ",
         };
 
         // helper class for known string length at compile time
