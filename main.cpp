@@ -22,10 +22,6 @@
 #include <base/logging.h>
 #include <base/timezone.h>
 
-/* sonenet */
-#include <sonenet/sonenet.h>
-#include <sonenet/service.h>
-
 /* extern headers */
 #include <http_parser/http_parser.h>
 #include <json11/json11.hpp>
