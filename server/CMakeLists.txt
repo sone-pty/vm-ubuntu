@@ -5,6 +5,6 @@ LINK_DIRECTORIES(${PROJECT_SOURCE_DIR}/lib)
 
 aux_source_directory(. SONE_LIB_SERVER_SRCS)
 
-add_library(libserver SHARED ${SONE_LIB_SERVER_SRCS})
+add_library(server SHARED ${SONE_LIB_SERVER_SRCS})
 
-target_link_libraries(libserver base)
+target_link_libraries(server base pthread)
