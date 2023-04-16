@@ -33,10 +33,6 @@ add_dependencies(Logservice base)
 add_dependencies(Test base)
 add_dependencies(server base)
 
-#头文件搜索目录
-INCLUDE_DIRECTORIES(include)
-INCLUDE_DIRECTORIES(./extern)
-
 #链接库搜索路径
 LINK_DIRECTORIES(lib)
 
@@ -48,3 +44,5 @@ ADD_EXECUTABLE(${MY_TARGET} ${SRC_LIST} ${EXTERN_HTTPPARSER_SRC} ${EXTERN_JSON11
 
 #执行文件链接属性
 TARGET_LINK_LIBRARIES(${MY_TARGET} ${EXTRA_LIBS})
+
+target_include_directories(${MY_TARGET} PUBLIC ${PROJECT_SOURCE_DIR}/extern ${PROJECT_SOURCE_DIR})
