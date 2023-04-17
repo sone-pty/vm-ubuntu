@@ -31,7 +31,7 @@ namespace sone
                       const InetAddress &listenAddr,
                       const std::string &nameArg,
                       Option option = kNoReusePort);
-            ~TcpServer(); // force out-line dtor, for std::unique_ptr members.
+            virtual ~TcpServer(); // force out-line dtor, for std::unique_ptr members.
 
             const std::string &ipPort() const { return ipPort_; }
             const std::string &name() const { return name_; }
