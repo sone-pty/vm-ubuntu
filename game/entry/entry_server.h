@@ -20,7 +20,10 @@ namespace sone
 
         private:
             void OnMessage(const TcpConnectionPtr& conn, Buffer* buffer, Timestamp time);
+            
+        private:
             void On_C2E_LoginRequest(const TcpConnectionPtr& conn, google::protobuf::Message* message, Timestamp time);
+            void On_E2L_RegistRequest(const TcpConnectionPtr& conn, google::protobuf::Message* message, Timestamp time);
         };
     }
 }

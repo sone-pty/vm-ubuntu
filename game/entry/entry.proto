@@ -5,6 +5,7 @@ package Entry;
 // 消息类型(收消息)
 enum ENTRY_RECV_MESSAGETYPE {
     C2E_LOGIN_MESSAGE = 0;
+    E2L_REGIST_MESSAGE = 1;
 }
 
 // 消息类型(发消息)
@@ -19,11 +20,18 @@ enum ENTRY_MESSAGE_RESPONSE {
     NO_ACCOUNT_RECORD = 2;
 }
 
+// login
 message C2E_LoginRequest {
-    string account = 2;
-    string passwd = 3;
+    string account = 1;
+    string passwd = 2;
 }
 
 message E2C_LoginResponse {
     ENTRY_MESSAGE_RESPONSE responseType = 2;
+}
+
+// 注册负载
+message E2L_RegistRequest {
+    string ip = 1; //IP:Port
+    string cpuInfo = 2;
 }
