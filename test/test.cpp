@@ -40,9 +40,10 @@ void SendLoginMessage(const TcpConnectionPtr& conn)
     std::string msg;
     req.SerializeToString(&msg);
     info.append(msg.c_str(), msg.size());
-    // 添加消息长度前缀
-    uint32_t messageLen = static_cast<uint32_t>(info.readableBytes());
-    info.prependInt32(messageLen);
+    // 添加消息长度和类型前缀
+    int32_t messageLen = static_cast<int32_t>(info.readableBytes());
+    int64_t trait = ((int64_t)messageLen << 32) | (int64_t)Entry::C2E_LOGIN_MESSAGE;
+    info.prependInt64(trait);
     conn->send(&info);
 }
 

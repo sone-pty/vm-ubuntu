@@ -2,10 +2,14 @@ syntax = "proto3";
 
 package Entry;
 
-// 消息类型
-enum ENTRY_MESSAGETYPE {
+// 消息类型(收消息)
+enum ENTRY_RECV_MESSAGETYPE {
     C2E_LOGIN_MESSAGE = 0;
-    E2C_LOGIN_R_MESSAGE = 1;
+}
+
+// 消息类型(发消息)
+enum ENTRY_SEND_MESSAGETYPE {
+    E2C_LOGIN_R_MESSAGE = 0;
 }
 
 // 响应类型
@@ -15,14 +19,11 @@ enum ENTRY_MESSAGE_RESPONSE {
     NO_ACCOUNT_RECORD = 2;
 }
 
-// 客户端和Entry之间的消息
 message C2E_LoginRequest {
-    ENTRY_MESSAGETYPE type = 1;
     string account = 2;
     string passwd = 3;
 }
 
 message E2C_LoginResponse {
-    ENTRY_MESSAGETYPE type = 1;
     ENTRY_MESSAGE_RESPONSE responseType = 2;
 }

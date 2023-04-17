@@ -45,42 +45,51 @@ void EntryServer::OnMessage(const TcpConnectionPtr& conn, Buffer* buffer, Timest
     ArrayInputStream stream(buffer->peek(), buffer->readableBytes());
     ZeroCopyInputStream* input_stream = &stream;
     CodedInputStream coded_input(input_stream);
-    Any any_message;
-    uint32 message_len;
+    
+    int64_t trait;
+    int32_t message_len; 
+    int32_t type;
+    const google::protobuf::Descriptor* descriptor;
+    const google::protobuf::Message* prototype;
 
-    while(buffer->readableBytes() > 0)
+    while(buffer->readableBytes() > sizeof(int64_t))
     {
-        message_len = buffer->readInt32();
+        trait = buffer->readInt64();
+        message_len = (int32_t)(trait >> 32);
+        type = (int32_t)(trait & 0xFFFFFFFF);
 
-        if(!any_message.ParseFromArray(buffer->peek(), message_len))
+        switch(type)
         {
-            LOG_ERROR << "proto parse from array failed, with data = [" << std::string(buffer->peek(), message_len) << "]";
+            case Entry::C2E_LOGIN_MESSAGE: 
+                descriptor = Entry::C2E_LoginRequest::descriptor();
+                break;
+            default:
+                descriptor = NULL; break;
+        }
+
+        if(descriptor == NULL)
+        {
+            LOG_ERROR << "descriptor == NULL";
             buffer->retrieve(message_len);
             continue;
         }
 
-        DynamicMessageFactory factory;
-        const Descriptor *descriptor = any_message.GetDescriptor();
-        const Message *prototype = factory.GetPrototype(descriptor);
+        prototype = google::protobuf::MessageFactory::generated_factory()->GetPrototype(descriptor);
+        google::protobuf::Message *message = prototype->New();
         
-        if (prototype == nullptr)
+        if(!message->ParseFromArray(buffer->peek(), message_len))
         {
-            LOG_ERROR << "prototype == nullptr, with data = [" << std::string(buffer->peek(), message_len) << "]";
+            LOG_ERROR << "Parse From array failed";
             buffer->retrieve(message_len);
-            continue;
-        }
-
-        Message* message = prototype->New();
-
-        // 解析 Any 对象中的消息数据
-        if (!any_message.UnpackTo(message))
-        {
             delete message;
-            buffer->retrieve(message_len);
             continue;
         }
+        else
+        {
+            buffer->retrieve(message_len);
+        }
 
-        // 分发
+        // 分发处理
         REGIST_MESSAGE(message, C2E_LoginRequest, conn, time)
     }
 }
@@ -91,5 +100,5 @@ void EntryServer::On_C2E_LoginRequest(const TcpConnectionPtr& conn, google::prot
     req.CopyFrom(*message);
     delete message;
 
-    LOG_INFO << "OnLogin";
+    LOG_INFO << "OnLogin: account = " << req.account() << ", passwd = " << req.passwd();
 }
