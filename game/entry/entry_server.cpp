@@ -9,7 +9,6 @@
 #include <google/protobuf/io/coded_stream.h>
 #include <google/protobuf/io/zero_copy_stream_impl.h>
 #include <google/protobuf/dynamic_message.h>
-#include <google/protobuf/any.pb.h>
 
 using namespace sone;
 using namespace sone::entry;
@@ -42,10 +41,6 @@ void EntryServer::Init()
 
 void EntryServer::OnMessage(const TcpConnectionPtr& conn, Buffer* buffer, Timestamp time)
 {
-    ArrayInputStream stream(buffer->peek(), buffer->readableBytes());
-    ZeroCopyInputStream* input_stream = &stream;
-    CodedInputStream coded_input(input_stream);
-    
     int64_t trait;
     int32_t message_len; 
     int32_t type;
