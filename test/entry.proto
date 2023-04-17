@@ -19,11 +19,12 @@ enum ENTRY_MESSAGE_RESPONSE {
     NO_ACCOUNT_RECORD = 2;
 }
 
+// 登录
 message C2E_LoginRequest {
-    string account = 2;
-    string passwd = 3;
+    string account = 1;
+    string passwd = 2;
 }
 
 message E2C_LoginResponse {
-    ENTRY_MESSAGE_RESPONSE responseType = 2;
+    ENTRY_MESSAGE_RESPONSE responseType = 1;
 }

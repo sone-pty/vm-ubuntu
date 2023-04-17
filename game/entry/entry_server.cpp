@@ -1,5 +1,5 @@
 #include "entry_server.h"
-#include "entry.pb.h"
+#include "../proto/entry.pb.h"
 
 #include <base/logging.h>
 #include <base/eventLoop.h>
@@ -84,20 +84,10 @@ void EntryServer::OnMessage(const TcpConnectionPtr& conn, Buffer* buffer, Timest
 
         // 分发处理
         REGIST_MESSAGE(message, C2E_LoginRequest, conn, time)
-        REGIST_MESSAGE(message, E2L_RegistRequest, conn, time)
     }
 }
 
 void EntryServer::On_C2E_LoginRequest(const TcpConnectionPtr& conn, google::protobuf::Message* message, Timestamp time)
-{
-    Entry::C2E_LoginRequest req;
-    req.CopyFrom(*message);
-    delete message;
-
-    LOG_INFO << "OnLogin: account = " << req.account() << ", passwd = " << req.passwd();
-}
-
-void EntryServer::On_E2L_RegistRequest(const TcpConnectionPtr& conn, google::protobuf::Message* message, Timestamp time)
 {
     Entry::C2E_LoginRequest req;
     req.CopyFrom(*message);
