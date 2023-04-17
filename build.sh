@@ -41,6 +41,7 @@ else
     mkdir -p $BIN_PATH  
 fi
 
+: <<COMMENT
 INC_PATH=$BUILD_ROOT/include
 
 if [ -d $INC_PATH ];then
@@ -67,6 +68,7 @@ do
 
     cp -R $file $dstfile
 done
+COMMENT
 
 LIB_PATH=$BUILD_ROOT/lib
 

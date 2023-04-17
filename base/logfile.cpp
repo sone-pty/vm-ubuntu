@@ -133,7 +133,7 @@ std::string LogFile::getLogFileName(const std::string &basename, time_t *now)
         dt = timezone_.toLocalTime(*now);
     }
 
-    snprintf(timebuf, sizeof(timebuf), ".%4d%02d%02d %02d:%02d:%02d.", dt.year, dt.month, dt.day, dt.hour, dt.minute, dt.second);
+    snprintf(timebuf, sizeof(timebuf), ".%4d%02d%02d-%02d:%02d:%02d.", dt.year, dt.month, dt.day, dt.hour, dt.minute, dt.second);
 
     //gmtime_r(now, &tm);
     //strftime(timebuf, sizeof timebuf, ".%Y%m%d-%H%M%S.", &tm);

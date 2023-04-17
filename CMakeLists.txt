@@ -25,13 +25,15 @@ AUX_SOURCE_DIRECTORY(./extern/json11 EXTERN_JSON11_SRC)
 
 #添加子目录
 ADD_SUBDIRECTORY(base)
-ADD_SUBDIRECTORY(Logservice)
-ADD_SUBDIRECTORY(test)
-ADD_SUBDIRECTORY(server)
 
+ADD_SUBDIRECTORY(Logservice)
 add_dependencies(Logservice base)
+
+ADD_SUBDIRECTORY(test)
 add_dependencies(Test base)
-add_dependencies(server base)
+
+ADD_SUBDIRECTORY(game/entry)
+add_dependencies(Entry base)
 
 #链接库搜索路径
 LINK_DIRECTORIES(lib)
