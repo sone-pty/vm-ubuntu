@@ -4,7 +4,8 @@ set -e
 
 # build proto
 protoc --cpp_out=. ./Logservice/LogMessage.proto
-protoc --cpp_out=. ./test/LogMessage.proto
+protoc --cpp_out=. ./test/*.proto
+protoc --cpp_out=. ./game/entry/*.proto
 
 # 默认构建类型为 Release
 BUILD_TYPE=Release

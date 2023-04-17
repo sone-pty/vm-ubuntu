@@ -9,9 +9,9 @@
             "type": "cppdbg",
             "request": "attach",
             "processId":"${command:pickProcess}",
-            "program": "${workspaceFolder}/bin/Logservice",
+            "program": "${workspaceFolder}/bin/Entry",
             "MIMode": "gdb",
-            "miDebuggerPath": "${workspaceFolder}/sudo_gdb",
+            "miDebuggerPath": "/usr/bin/gdb",
             "setupCommands": [
                 {
                     "description": "为 gdb 启用整齐打印",

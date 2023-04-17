@@ -3,5 +3,6 @@ bin/
 build/
 include/
 lib/
-test/LogMessage.pb.*
+test/*.pb.*
 Logservice/LogMessage.pb.*
+game/entry/*.pb.*

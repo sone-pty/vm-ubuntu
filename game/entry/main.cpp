@@ -29,7 +29,7 @@ struct ServerConfig
 
 	bool ReadConfig()
 	{
-		std::ifstream file("Entry.json");
+		std::ifstream file("../config/Entry.json");
 		if (!file.is_open())
 		{
 			LOG_ERROR << "read config file failed";
@@ -117,7 +117,8 @@ int main(int argc, char *argv[])
 	g_config.ReadConfig();
 	EventLoop mainLoop;
 	entry::EntryServer server(&mainLoop, g_config.ip, g_config.port, g_config.reusePort);
-	server.setThreadNum(g_config.threadNums);
+	//server.setThreadNum(g_config.threadNums);
+	server.Init();
 	server.start();
 	mainLoop.loop();
 

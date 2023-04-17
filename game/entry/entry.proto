@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package Entry;
+
+// 消息类型
+enum ENTRY_MESSAGETYPE {
+    C2E_LOGIN_MESSAGE = 0;
+    E2C_LOGIN_R_MESSAGE = 1;
+}
+
+// 响应类型
+enum ENTRY_MESSAGE_RESPONSE {
+    OK = 0;
+    PASSWD_AUTH_FAILED = 1;
+    NO_ACCOUNT_RECORD = 2;
+}
+
+// 客户端和Entry之间的消息
+message C2E_LoginRequest {
+    ENTRY_MESSAGETYPE type = 1;
+    string account = 2;
+    string passwd = 3;
+}
+
+message E2C_LoginResponse {
+    ENTRY_MESSAGETYPE type = 1;
+    ENTRY_MESSAGE_RESPONSE responseType = 2;
+}
