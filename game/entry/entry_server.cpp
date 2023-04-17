@@ -5,15 +5,10 @@
 #include <base/eventLoop.h>
 
 #include <google/protobuf/util/type_resolver.h>
-#include <google/protobuf/util/type_resolver_util.h>
 #include <google/protobuf/dynamic_message.h>
 
 using namespace sone;
 using namespace sone::entry;
-
-using namespace google::protobuf;
-using namespace google::protobuf::io;
-using namespace google::protobuf::util;
 
 #define REGIST_MESSAGE(_message, _type, _conn, _time) \
     if(_message->GetDescriptor() == Entry::_type::descriptor()) \
