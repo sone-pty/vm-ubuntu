@@ -38,6 +38,9 @@ add_dependencies(common base)
 
 ADD_SUBDIRECTORY(game/entry)
 add_dependencies(Entry common base)
+
+ADD_SUBDIRECTORY(game/list)
+add_dependencies(List common base)
 ##game##
 
 #链接库搜索路径

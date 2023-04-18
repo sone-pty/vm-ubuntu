@@ -23,7 +23,21 @@ EntryServer::~EntryServer()
 
 void EntryServer::DispatchMessage(const TcpConnectionPtr& conn, google::protobuf::Message* message, Timestamp time)
 {
-    REGIST_MESSAGE(Entry, C2E_LoginRequest)
+    DISPATCH_MESSAGE(Entry, C2E_LoginRequest)
+}
+
+const google::protobuf::Descriptor* EntryServer::GetDescriptor(int32_t type)
+{
+    const google::protobuf::Descriptor* descriptor;
+
+    switch (type)
+    {
+        REGIST_MESSAGE(Entry::C2E_LOGIN_MESSAGE, Entry::C2E_LoginRequest)
+        default:
+            descriptor = NULL; break;
+    }
+
+    return descriptor;
 }
 
 void EntryServer::On_C2E_LoginRequest(const TcpConnectionPtr& conn, google::protobuf::Message* message, Timestamp time)

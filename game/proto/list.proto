@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package List;
+
+// 消息类型(收消息)
+enum LIST_RECV_MESSAGETYPE {
+    E2L_UPLOAD_LOADING_MESSAGE = 0;              // entry上传负载的消息             
+}
+
+// 消息类型(发消息)
+enum LIST_SEND_MESSAGETYPE {
+    L2C_ENTRY_CHOICE_MESSAGE = 0;       // 为客户端提供entry的消息
+}
+
+message E2L_UploadLoading {
+    string ipInfo = 1;                  // IP:Port
+    int32 loadingWeight = 2;            // 负载权值
+    int64 updateTime = 3;               // 负载最后更新时间
+}

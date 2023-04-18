@@ -1,5 +1,4 @@
 #include "base_server.h"
-#include "../proto/entry.pb.h"
 
 #include <base/logging.h>
 #include <base/eventLoop.h>
@@ -39,15 +38,7 @@ void BaseServer::OnMessage(const TcpConnectionPtr& conn, Buffer* buffer, Timesta
         trait = buffer->readInt64();
         message_len = (int32_t)(trait >> 32);
         type = (int32_t)(trait & 0xFFFFFFFF);
-
-        switch(type)
-        {
-            case Entry::C2E_LOGIN_MESSAGE: 
-                descriptor = Entry::C2E_LoginRequest::descriptor();
-                break;
-            default:
-                descriptor = NULL; break;
-        }
+        descriptor = GetDescriptor(type);
 
         if(descriptor == NULL)
         {
@@ -71,7 +62,6 @@ void BaseServer::OnMessage(const TcpConnectionPtr& conn, Buffer* buffer, Timesta
             buffer->retrieve(message_len);
         }
 
-        // 分发处理
         DispatchMessage(conn, message, time);
     }
 }
