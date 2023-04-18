@@ -32,8 +32,13 @@ add_dependencies(Logservice base)
 ADD_SUBDIRECTORY(test)
 add_dependencies(Test base)
 
+##game##
+add_subdirectory(game/common)
+add_dependencies(common base)
+
 ADD_SUBDIRECTORY(game/entry)
-add_dependencies(Entry base)
+add_dependencies(Entry common base)
+##game##
 
 #链接库搜索路径
 LINK_DIRECTORIES(lib)

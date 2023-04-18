@@ -117,7 +117,7 @@ int main(int argc, char *argv[])
 	g_config.ReadConfig();
 	EventLoop mainLoop;
 	entry::EntryServer server(&mainLoop, g_config.ip, g_config.port, g_config.reusePort);
-	//server.setThreadNum(g_config.threadNums);
+	server.setThreadNum(g_config.threadNums);
 	server.Init();
 	server.start();
 	mainLoop.loop();
