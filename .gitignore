@@ -5,4 +5,4 @@ include/
 lib/
 test/*.pb.*
 Logservice/LogMessage.pb.*
-game/proto/*.pb.*
+game/proto/entry.pb.*
