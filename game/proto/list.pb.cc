@@ -5,116 +5,84 @@
 
 #include <algorithm>
 
-#include <google/protobuf/stubs/common.h>
-#include <google/protobuf/stubs/port.h>
 #include <google/protobuf/io/coded_stream.h>
-#include <google/protobuf/wire_format_lite_inl.h>
+#include <google/protobuf/extension_set.h>
+#include <google/protobuf/wire_format_lite.h>
 #include <google/protobuf/descriptor.h>
 #include <google/protobuf/generated_message_reflection.h>
 #include <google/protobuf/reflection_ops.h>
 #include <google/protobuf/wire_format.h>
-// This is a temporary google only hack
-#ifdef GOOGLE_PROTOBUF_ENFORCE_UNIQUENESS
-#include "third_party/protobuf/version.h"
-#endif
 // @@protoc_insertion_point(includes)
-
+#include <google/protobuf/port_def.inc>
 namespace List {
 class E2L_UploadLoadingDefaultTypeInternal {
  public:
-  ::google::protobuf::internal::ExplicitlyConstructed<E2L_UploadLoading>
-      _instance;
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<E2L_UploadLoading> _instance;
 } _E2L_UploadLoading_default_instance_;
 }  // namespace List
-namespace protobuf_game_2fproto_2flist_2eproto {
-static void InitDefaultsE2L_UploadLoading() {
+static void InitDefaultsscc_info_E2L_UploadLoading_game_2fproto_2flist_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   {
     void* ptr = &::List::_E2L_UploadLoading_default_instance_;
     new (ptr) ::List::E2L_UploadLoading();
-    ::google::protobuf::internal::OnShutdownDestroyMessage(ptr);
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
   ::List::E2L_UploadLoading::InitAsDefaultInstance();
 }
 
-::google::protobuf::internal::SCCInfo<0> scc_info_E2L_UploadLoading =
-    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 0, InitDefaultsE2L_UploadLoading}, {}};
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_E2L_UploadLoading_game_2fproto_2flist_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_E2L_UploadLoading_game_2fproto_2flist_2eproto}, {}};
 
-void InitDefaults() {
-  ::google::protobuf::internal::InitSCC(&scc_info_E2L_UploadLoading.base);
-}
+static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_game_2fproto_2flist_2eproto[1];
+static const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* file_level_enum_descriptors_game_2fproto_2flist_2eproto[2];
+static constexpr ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor const** file_level_service_descriptors_game_2fproto_2flist_2eproto = nullptr;
 
-::google::protobuf::Metadata file_level_metadata[1];
-const ::google::protobuf::EnumDescriptor* file_level_enum_descriptors[2];
-
-const ::google::protobuf::uint32 TableStruct::offsets[] GOOGLE_PROTOBUF_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
+const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_game_2fproto_2flist_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   ~0u,  // no _has_bits_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::List::E2L_UploadLoading, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::List::E2L_UploadLoading, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::List::E2L_UploadLoading, ipinfo_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::List::E2L_UploadLoading, loadingweight_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::List::E2L_UploadLoading, updatetime_),
+  PROTOBUF_FIELD_OFFSET(::List::E2L_UploadLoading, ipinfo_),
+  PROTOBUF_FIELD_OFFSET(::List::E2L_UploadLoading, loadingweight_),
+  PROTOBUF_FIELD_OFFSET(::List::E2L_UploadLoading, updatetime_),
 };
-static const ::google::protobuf::internal::MigrationSchema schemas[] GOOGLE_PROTOBUF_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
+static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, sizeof(::List::E2L_UploadLoading)},
 };
 
-static ::google::protobuf::Message const * const file_default_instances[] = {
-  reinterpret_cast<const ::google::protobuf::Message*>(&::List::_E2L_UploadLoading_default_instance_),
+static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::List::_E2L_UploadLoading_default_instance_),
 };
 
-void protobuf_AssignDescriptors() {
-  AddDescriptors();
-  AssignDescriptors(
-      "game/proto/list.proto", schemas, file_default_instances, TableStruct::offsets,
-      file_level_metadata, file_level_enum_descriptors, NULL);
-}
+const char descriptor_table_protodef_game_2fproto_2flist_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
+  "\n\025game/proto/list.proto\022\004List\"N\n\021E2L_Upl"
+  "oadLoading\022\016\n\006ipInfo\030\001 \001(\t\022\025\n\rloadingWei"
+  "ght\030\002 \001(\005\022\022\n\nupdateTime\030\003 \001(\003*7\n\025LIST_RE"
+  "CV_MESSAGETYPE\022\036\n\032E2L_UPLOAD_LOADING_MES"
+  "SAGE\020\000*5\n\025LIST_SEND_MESSAGETYPE\022\034\n\030L2C_E"
+  "NTRY_CHOICE_MESSAGE\020\000b\006proto3"
+  ;
+static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_game_2fproto_2flist_2eproto_deps[1] = {
+};
+static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_game_2fproto_2flist_2eproto_sccs[1] = {
+  &scc_info_E2L_UploadLoading_game_2fproto_2flist_2eproto.base,
+};
+static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_game_2fproto_2flist_2eproto_once;
+const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_game_2fproto_2flist_2eproto = {
+  false, false, descriptor_table_protodef_game_2fproto_2flist_2eproto, "game/proto/list.proto", 229,
+  &descriptor_table_game_2fproto_2flist_2eproto_once, descriptor_table_game_2fproto_2flist_2eproto_sccs, descriptor_table_game_2fproto_2flist_2eproto_deps, 1, 0,
+  schemas, file_default_instances, TableStruct_game_2fproto_2flist_2eproto::offsets,
+  file_level_metadata_game_2fproto_2flist_2eproto, 1, file_level_enum_descriptors_game_2fproto_2flist_2eproto, file_level_service_descriptors_game_2fproto_2flist_2eproto,
+};
 
-void protobuf_AssignDescriptorsOnce() {
-  static ::google::protobuf::internal::once_flag once;
-  ::google::protobuf::internal::call_once(once, protobuf_AssignDescriptors);
-}
-
-void protobuf_RegisterTypes(const ::std::string&) GOOGLE_PROTOBUF_ATTRIBUTE_COLD;
-void protobuf_RegisterTypes(const ::std::string&) {
-  protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::internal::RegisterAllTypes(file_level_metadata, 1);
-}
-
-void AddDescriptorsImpl() {
-  InitDefaults();
-  static const char descriptor[] GOOGLE_PROTOBUF_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
-      "\n\025game/proto/list.proto\022\004List\"N\n\021E2L_Upl"
-      "oadLoading\022\016\n\006ipInfo\030\001 \001(\t\022\025\n\rloadingWei"
-      "ght\030\002 \001(\005\022\022\n\nupdateTime\030\003 \001(\003*7\n\025LIST_RE"
-      "CV_MESSAGETYPE\022\036\n\032E2L_UPLOAD_LOADING_MES"
-      "SAGE\020\000*5\n\025LIST_SEND_MESSAGETYPE\022\034\n\030L2C_E"
-      "NTRY_CHOICE_MESSAGE\020\000b\006proto3"
-  };
-  ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-      descriptor, 229);
-  ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
-    "game/proto/list.proto", &protobuf_RegisterTypes);
-}
-
-void AddDescriptors() {
-  static ::google::protobuf::internal::once_flag once;
-  ::google::protobuf::internal::call_once(once, AddDescriptorsImpl);
-}
-// Force AddDescriptors() to be called at dynamic initialization time.
-struct StaticDescriptorInitializer {
-  StaticDescriptorInitializer() {
-    AddDescriptors();
-  }
-} static_descriptor_initializer;
-}  // namespace protobuf_game_2fproto_2flist_2eproto
+// Force running AddDescriptors() at dynamic initialization time.
+static bool dynamic_init_dummy_game_2fproto_2flist_2eproto = (static_cast<void>(::PROTOBUF_NAMESPACE_ID::internal::AddDescriptors(&descriptor_table_game_2fproto_2flist_2eproto)), true);
 namespace List {
-const ::google::protobuf::EnumDescriptor* LIST_RECV_MESSAGETYPE_descriptor() {
-  protobuf_game_2fproto_2flist_2eproto::protobuf_AssignDescriptorsOnce();
-  return protobuf_game_2fproto_2flist_2eproto::file_level_enum_descriptors[0];
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* LIST_RECV_MESSAGETYPE_descriptor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_game_2fproto_2flist_2eproto);
+  return file_level_enum_descriptors_game_2fproto_2flist_2eproto[0];
 }
 bool LIST_RECV_MESSAGETYPE_IsValid(int value) {
   switch (value) {
@@ -125,9 +93,9 @@ bool LIST_RECV_MESSAGETYPE_IsValid(int value) {
   }
 }
 
-const ::google::protobuf::EnumDescriptor* LIST_SEND_MESSAGETYPE_descriptor() {
-  protobuf_game_2fproto_2flist_2eproto::protobuf_AssignDescriptorsOnce();
-  return protobuf_game_2fproto_2flist_2eproto::file_level_enum_descriptors[1];
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* LIST_SEND_MESSAGETYPE_descriptor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_game_2fproto_2flist_2eproto);
+  return file_level_enum_descriptors_game_2fproto_2flist_2eproto[1];
 }
 bool LIST_SEND_MESSAGETYPE_IsValid(int value) {
   switch (value) {
@@ -143,26 +111,23 @@ bool LIST_SEND_MESSAGETYPE_IsValid(int value) {
 
 void E2L_UploadLoading::InitAsDefaultInstance() {
 }
-#if !defined(_MSC_VER) || _MSC_VER >= 1900
-const int E2L_UploadLoading::kIpInfoFieldNumber;
-const int E2L_UploadLoading::kLoadingWeightFieldNumber;
-const int E2L_UploadLoading::kUpdateTimeFieldNumber;
-#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+class E2L_UploadLoading::_Internal {
+ public:
+};
 
-E2L_UploadLoading::E2L_UploadLoading()
-  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
-  ::google::protobuf::internal::InitSCC(
-      &protobuf_game_2fproto_2flist_2eproto::scc_info_E2L_UploadLoading.base);
+E2L_UploadLoading::E2L_UploadLoading(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:List.E2L_UploadLoading)
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:List.E2L_UploadLoading)
 }
 E2L_UploadLoading::E2L_UploadLoading(const E2L_UploadLoading& from)
-  : ::google::protobuf::Message(),
-      _internal_metadata_(NULL) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
-  ipinfo_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (from.ipinfo().size() > 0) {
-    ipinfo_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.ipinfo_);
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ipinfo_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_ipinfo().empty()) {
+    ipinfo_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from._internal_ipinfo(),
+      GetArena());
   }
   ::memcpy(&updatetime_, &from.updatetime_,
     static_cast<size_t>(reinterpret_cast<char*>(&loadingweight_) -
@@ -171,7 +136,8 @@ E2L_UploadLoading::E2L_UploadLoading(const E2L_UploadLoading& from)
 }
 
 void E2L_UploadLoading::SharedCtor() {
-  ipinfo_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_E2L_UploadLoading_game_2fproto_2flist_2eproto.base);
+  ipinfo_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   ::memset(&updatetime_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&loadingweight_) -
       reinterpret_cast<char*>(&updatetime_)) + sizeof(loadingweight_));
@@ -180,177 +146,126 @@ void E2L_UploadLoading::SharedCtor() {
 E2L_UploadLoading::~E2L_UploadLoading() {
   // @@protoc_insertion_point(destructor:List.E2L_UploadLoading)
   SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 void E2L_UploadLoading::SharedDtor() {
-  ipinfo_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  GOOGLE_DCHECK(GetArena() == nullptr);
+  ipinfo_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 
+void E2L_UploadLoading::ArenaDtor(void* object) {
+  E2L_UploadLoading* _this = reinterpret_cast< E2L_UploadLoading* >(object);
+  (void)_this;
+}
+void E2L_UploadLoading::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
 void E2L_UploadLoading::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const ::google::protobuf::Descriptor* E2L_UploadLoading::descriptor() {
-  ::protobuf_game_2fproto_2flist_2eproto::protobuf_AssignDescriptorsOnce();
-  return ::protobuf_game_2fproto_2flist_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
-}
-
 const E2L_UploadLoading& E2L_UploadLoading::default_instance() {
-  ::google::protobuf::internal::InitSCC(&protobuf_game_2fproto_2flist_2eproto::scc_info_E2L_UploadLoading.base);
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_E2L_UploadLoading_game_2fproto_2flist_2eproto.base);
   return *internal_default_instance();
 }
 
 
 void E2L_UploadLoading::Clear() {
 // @@protoc_insertion_point(message_clear_start:List.E2L_UploadLoading)
-  ::google::protobuf::uint32 cached_has_bits = 0;
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  ipinfo_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  ipinfo_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
   ::memset(&updatetime_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&loadingweight_) -
       reinterpret_cast<char*>(&updatetime_)) + sizeof(loadingweight_));
-  _internal_metadata_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-bool E2L_UploadLoading::MergePartialFromCodedStream(
-    ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
-  ::google::protobuf::uint32 tag;
-  // @@protoc_insertion_point(parse_start:List.E2L_UploadLoading)
-  for (;;) {
-    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
-    tag = p.first;
-    if (!p.second) goto handle_unusual;
-    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+const char* E2L_UploadLoading::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  ::PROTOBUF_NAMESPACE_ID::Arena* arena = GetArena(); (void)arena;
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
       // string ipInfo = 1;
-      case 1: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(10u /* 10 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_ipinfo()));
-          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            this->ipinfo().data(), static_cast<int>(this->ipinfo().length()),
-            ::google::protobuf::internal::WireFormatLite::PARSE,
-            "List.E2L_UploadLoading.ipInfo"));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          auto str = _internal_mutable_ipinfo();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "List.E2L_UploadLoading.ipInfo"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       // int32 loadingWeight = 2;
-      case 2: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(16u /* 16 & 0xFF */)) {
-
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
-                 input, &loadingweight_)));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
+          loadingweight_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       // int64 updateTime = 3;
-      case 3: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(24u /* 24 & 0xFF */)) {
-
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
-                 input, &updatetime_)));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 24)) {
+          updatetime_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       default: {
       handle_unusual:
-        if (tag == 0) {
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
           goto success;
         }
-        DO_(::google::protobuf::internal::WireFormat::SkipField(
-              input, tag, _internal_metadata_.mutable_unknown_fields()));
-        break;
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
       }
-    }
-  }
+    }  // switch
+  }  // while
 success:
-  // @@protoc_insertion_point(parse_success:List.E2L_UploadLoading)
-  return true;
+  return ptr;
 failure:
-  // @@protoc_insertion_point(parse_failure:List.E2L_UploadLoading)
-  return false;
-#undef DO_
+  ptr = nullptr;
+  goto success;
+#undef CHK_
 }
 
-void E2L_UploadLoading::SerializeWithCachedSizes(
-    ::google::protobuf::io::CodedOutputStream* output) const {
-  // @@protoc_insertion_point(serialize_start:List.E2L_UploadLoading)
-  ::google::protobuf::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  // string ipInfo = 1;
-  if (this->ipinfo().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->ipinfo().data(), static_cast<int>(this->ipinfo().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "List.E2L_UploadLoading.ipInfo");
-    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      1, this->ipinfo(), output);
-  }
-
-  // int32 loadingWeight = 2;
-  if (this->loadingweight() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(2, this->loadingweight(), output);
-  }
-
-  // int64 updateTime = 3;
-  if (this->updatetime() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt64(3, this->updatetime(), output);
-  }
-
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
-  }
-  // @@protoc_insertion_point(serialize_end:List.E2L_UploadLoading)
-}
-
-::google::protobuf::uint8* E2L_UploadLoading::InternalSerializeWithCachedSizesToArray(
-    bool deterministic, ::google::protobuf::uint8* target) const {
-  (void)deterministic; // Unused
+::PROTOBUF_NAMESPACE_ID::uint8* E2L_UploadLoading::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:List.E2L_UploadLoading)
-  ::google::protobuf::uint32 cached_has_bits = 0;
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   // string ipInfo = 1;
   if (this->ipinfo().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->ipinfo().data(), static_cast<int>(this->ipinfo().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_ipinfo().data(), static_cast<int>(this->_internal_ipinfo().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
       "List.E2L_UploadLoading.ipInfo");
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        1, this->ipinfo(), target);
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_ipinfo(), target);
   }
 
   // int32 loadingWeight = 2;
   if (this->loadingweight() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(2, this->loadingweight(), target);
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(2, this->_internal_loadingweight(), target);
   }
 
   // int64 updateTime = 3;
   if (this->updatetime() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(3, this->updatetime(), target);
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt64ToArray(3, this->_internal_updatetime(), target);
   }
 
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:List.E2L_UploadLoading)
   return target;
@@ -360,46 +275,49 @@ size_t E2L_UploadLoading::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:List.E2L_UploadLoading)
   size_t total_size = 0;
 
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    total_size +=
-      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
-  }
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
   // string ipInfo = 1;
   if (this->ipinfo().size() > 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::StringSize(
-        this->ipinfo());
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_ipinfo());
   }
 
   // int64 updateTime = 3;
   if (this->updatetime() != 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::Int64Size(
-        this->updatetime());
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int64Size(
+        this->_internal_updatetime());
   }
 
   // int32 loadingWeight = 2;
   if (this->loadingweight() != 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::Int32Size(
-        this->loadingweight());
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->_internal_loadingweight());
   }
 
-  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
   SetCachedSize(cached_size);
   return total_size;
 }
 
-void E2L_UploadLoading::MergeFrom(const ::google::protobuf::Message& from) {
+void E2L_UploadLoading::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
 // @@protoc_insertion_point(generalized_merge_from_start:List.E2L_UploadLoading)
   GOOGLE_DCHECK_NE(&from, this);
   const E2L_UploadLoading* source =
-      ::google::protobuf::internal::DynamicCastToGenerated<const E2L_UploadLoading>(
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<E2L_UploadLoading>(
           &from);
-  if (source == NULL) {
+  if (source == nullptr) {
   // @@protoc_insertion_point(generalized_merge_from_cast_fail:List.E2L_UploadLoading)
-    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
   } else {
   // @@protoc_insertion_point(generalized_merge_from_cast_success:List.E2L_UploadLoading)
     MergeFrom(*source);
@@ -409,23 +327,22 @@ void E2L_UploadLoading::MergeFrom(const ::google::protobuf::Message& from) {
 void E2L_UploadLoading::MergeFrom(const E2L_UploadLoading& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:List.E2L_UploadLoading)
   GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
-  ::google::protobuf::uint32 cached_has_bits = 0;
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from.ipinfo().size() > 0) {
-
-    ipinfo_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.ipinfo_);
+    _internal_set_ipinfo(from._internal_ipinfo());
   }
   if (from.updatetime() != 0) {
-    set_updatetime(from.updatetime());
+    _internal_set_updatetime(from._internal_updatetime());
   }
   if (from.loadingweight() != 0) {
-    set_loadingweight(from.loadingweight());
+    _internal_set_loadingweight(from._internal_loadingweight());
   }
 }
 
-void E2L_UploadLoading::CopyFrom(const ::google::protobuf::Message& from) {
+void E2L_UploadLoading::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
 // @@protoc_insertion_point(generalized_copy_from_start:List.E2L_UploadLoading)
   if (&from == this) return;
   Clear();
@@ -443,33 +360,30 @@ bool E2L_UploadLoading::IsInitialized() const {
   return true;
 }
 
-void E2L_UploadLoading::Swap(E2L_UploadLoading* other) {
-  if (other == this) return;
-  InternalSwap(other);
-}
 void E2L_UploadLoading::InternalSwap(E2L_UploadLoading* other) {
   using std::swap;
-  ipinfo_.Swap(&other->ipinfo_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
-  swap(updatetime_, other->updatetime_);
-  swap(loadingweight_, other->loadingweight_);
-  _internal_metadata_.Swap(&other->_internal_metadata_);
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
+  ipinfo_.Swap(&other->ipinfo_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(E2L_UploadLoading, loadingweight_)
+      + sizeof(E2L_UploadLoading::loadingweight_)
+      - PROTOBUF_FIELD_OFFSET(E2L_UploadLoading, updatetime_)>(
+          reinterpret_cast<char*>(&updatetime_),
+          reinterpret_cast<char*>(&other->updatetime_));
 }
 
-::google::protobuf::Metadata E2L_UploadLoading::GetMetadata() const {
-  protobuf_game_2fproto_2flist_2eproto::protobuf_AssignDescriptorsOnce();
-  return ::protobuf_game_2fproto_2flist_2eproto::file_level_metadata[kIndexInFileMessages];
+::PROTOBUF_NAMESPACE_ID::Metadata E2L_UploadLoading::GetMetadata() const {
+  return GetMetadataStatic();
 }
 
 
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace List
-namespace google {
-namespace protobuf {
-template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::List::E2L_UploadLoading* Arena::CreateMaybeMessage< ::List::E2L_UploadLoading >(Arena* arena) {
-  return Arena::CreateInternal< ::List::E2L_UploadLoading >(arena);
+PROTOBUF_NAMESPACE_OPEN
+template<> PROTOBUF_NOINLINE ::List::E2L_UploadLoading* Arena::CreateMaybeMessage< ::List::E2L_UploadLoading >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::List::E2L_UploadLoading >(arena);
 }
-}  // namespace protobuf
-}  // namespace google
+PROTOBUF_NAMESPACE_CLOSE
 
 // @@protoc_insertion_point(global_scope)
+#include <google/protobuf/port_undef.inc>

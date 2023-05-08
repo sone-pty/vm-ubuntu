@@ -2,6 +2,8 @@
 
 #include "thread.h"
 
+#include <string>
+
 namespace sone
 {
     namespace utils

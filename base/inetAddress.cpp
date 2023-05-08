@@ -7,6 +7,7 @@
 #include <netinet/in.h>
 #include <string.h>
 #include <assert.h>
+#include <stddef.h>
 
 using namespace sone::utils;
 
