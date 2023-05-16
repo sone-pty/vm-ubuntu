@@ -4,5 +4,4 @@ include/
 lib/
 test/*.pb.*
 Logservice/LogMessage.pb.*
-game/proto/entry.pb.*
-rust/rs_test/target/
+game/proto/*.pb.*
