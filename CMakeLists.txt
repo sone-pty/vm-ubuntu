@@ -47,7 +47,7 @@ add_dependencies(List common base)
 LINK_DIRECTORIES(lib)
 
 #设置链接库
-SET(EXTRA_LIBS ${EXTRA_LIBS} ${MY_LINK} pthread hiredis)
+SET(EXTRA_LIBS ${EXTRA_LIBS} ${MY_LINK} pthread)
 
 #生成可执行文件
 ADD_EXECUTABLE(${MY_TARGET} ${SRC_LIST} ${EXTERN_HTTPPARSER_SRC} ${EXTERN_JSON11_SRC})
